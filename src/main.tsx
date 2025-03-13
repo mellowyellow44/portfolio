@@ -1,6 +1,11 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
-import RoutesIndex from './RoutesIndex.tsx'
+import { Provider } from "react-redux";
+import RoutesIndex from "./RoutesIndex.tsx";
+import { store } from "./redux/store.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as any).render(
-  <RoutesIndex />,
+  <Provider store={store}>
+    <RoutesIndex />
+  </Provider>,
 );

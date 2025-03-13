@@ -1,32 +1,49 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import muiLightTheme from '../../styles/mui/themes/lightTheme';
 
 interface ThemeState {
-  primaryColor: string;
-  secondaryColor: string;
+  palette: {
+    mode: string;
+    primary: {
+      main: string;
+    };
+    secondary: {
+      main: string;
+    };
+  };
+  typography: {
+    fontFamily: string;
+    h1: {
+      fontWeight: number;
+    };
+  };
 }
 
 const initialState: ThemeState = {
- primaryColor: '#000000',
- secondaryColor: '#ffffff',
-};
+  ...muiLightTheme,
+}
 
 const themeSlice = createSlice({  
   name: 'theme',
   initialState,
-  reducers: {
-    updateTheme: (state, action: PayloadAction<ThemeState>) => {
-      const currentTheme = action.payload;
-      const newTheme = {
-        ...currentTheme,
-        ...action.payload,
-      };
-      return newTheme;
-    }
-  },
-});
+
+    reducers: {
+      toggleThemeMode: (state, action) => {
+        state.palette.mode = action.payload;
+      },
+      setPrimaryColor: (state, action: PayloadAction<string>) => {
+        state.palette.primary.main = action.payload;
+      },
+      setSecondaryColor: (state, action: PayloadAction<string>) => {
+        state.palette.secondary.main = action.payload;
+      },
+    },
+  });
 
 export const { 
-  updateTheme
+  toggleThemeMode, 
+  setPrimaryColor, 
+  setSecondaryColor
 } = themeSlice.actions;
 
 export default themeSlice.reducer;
