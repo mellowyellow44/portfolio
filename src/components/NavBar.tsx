@@ -3,24 +3,18 @@ import ThemeToggleSwitch from "./ThemeToggleSwitch.tsx";
 import { alpha, AppBar, Avatar, Box, Button, Container, Divider, Drawer, Fade, IconButton, InputBase, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Slide, Toolbar, Tooltip, Typography, useScrollTrigger, useTheme, } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 import PersonIcon from "@mui/icons-material/Person";
-import CodeIcon from "@mui/icons-material/Code";
-import WorkIcon from "@mui/icons-material/Work";
-import EmailIcon from "@mui/icons-material/Email";
+// import CodeIcon from "@mui/icons-material/Code";
+// import WorkIcon from "@mui/icons-material/Work";
+// import EmailIcon from "@mui/icons-material/Email";
+// import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CloseIcon from "@mui/icons-material/Close";
-
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-
-interface NavbarProps {
-    toggleTheme?: () => void;
-}
+import { githubProfileLink, linkedInProfileLink } from "../constants/links.ts";
 
 // Hide AppBar on scroll down
 function HideOnScroll(props: { children: React.ReactElement }) {
@@ -34,7 +28,7 @@ function HideOnScroll(props: { children: React.ReactElement }) {
     );
 }
 
-const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
+const Navbar = () => {
     const theme = useTheme();
     const location = useLocation();
     const dispatch = useDispatch();
@@ -58,20 +52,20 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
     // Navigation items
     const navItems = [
         { name: "Skills", icon: <PersonIcon />, path: "/skills" },
-        { name: "Projects", icon: <CodeIcon />, path: "/projects" },
-        { name: "Experience", icon: <WorkIcon />, path: "/experience" },
-        { name: "Contact", icon: <EmailIcon />, path: "/contact" },
+        // { name: "Projects", icon: <CodeIcon />, path: "/projects" },
+        // { name: "Experience", icon: <WorkIcon />, path: "/experience" },
+        // { name: "Contact", icon: <EmailIcon />, path: "/contact" },
     ];
 
     // Social items
     const socialItems = [
-        { name: "GitHub", icon: <GitHubIcon />, url: "https://github.com/" },
+        { name: "GitHub", icon: <GitHubIcon />, url: githubProfileLink },
         {
             name: "LinkedIn",
             icon: <LinkedInIcon />,
-            url: "https://linkedin.com/in/",
+            url: linkedInProfileLink,
         },
-        { name: "Twitter", icon: <TwitterIcon />, url: "https://twitter.com/" },
+        // { name: "Twitter", icon: <TwitterIcon />, url: "https://twitter.com/" },
     ];
 
     // User menu items
@@ -102,17 +96,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
         setDrawerOpen(!drawerOpen);
     };
 
-    const handleToggleTheme = () => {
-        // If toggleTheme prop is provided, use it
-        if (toggleTheme) {
-            toggleTheme();
-        } else {
-            // Otherwise dispatch Redux action (uncomment when you have the action)
-            // dispatch(toggleThemeMode());
-            console.log("Theme toggle clicked");
-        }
-    };
-
     const handleSearchToggle = () => {
         setSearchOpen(!searchOpen);
         if (searchOpen) {
@@ -130,7 +113,9 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
 
     // Check if the current path matches a navigation item
     const isActiveRoute = (path: string) => {
-        return location.pathname === path;
+        //make active if first part of path matches
+        const currentPathPrefix = `/${location.pathname.split("/")[1]}`;
+        return currentPathPrefix === path
     };
 
     // Drawer content
@@ -206,18 +191,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
                     </ListItem>
                 ))}
             </List>
-            <Box sx={{ mt: "auto", p: 2 }}>
-                <Button
-                    variant="outlined"
-                    fullWidth
-                    startIcon={isDarkMode
-                        ? <LightModeIcon />
-                        : <DarkModeIcon />}
-                    onClick={handleToggleTheme}
-                >
-                    {isDarkMode ? "Light Mode" : "Dark Mode"}
-                </Button>
-            </Box>
         </Box>
     );
 
@@ -467,7 +440,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
                             </Box>
 
                             {/* User Menu */}
-                            <Box sx={{ flexGrow: 0, ml: 2 }}>
+                            {/* <Box sx={{ flexGrow: 0, ml: 2 }}>
                                 <Tooltip title="Open settings">
                                     <IconButton
                                         onClick={handleOpenUserMenu}
@@ -508,7 +481,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
                                         </MenuItem>
                                     ))}
                                 </Menu>
-                            </Box>
+                            </Box> */}
                         </Toolbar>
                     </Container>
                 </AppBar>
