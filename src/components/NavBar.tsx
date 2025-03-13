@@ -57,7 +57,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleTheme }) => {
 
     // Navigation items
     const navItems = [
-        { name: "About", icon: <PersonIcon />, path: "/about" },
+        { name: "Skills", icon: <PersonIcon />, path: "/skills" },
         { name: "Projects", icon: <CodeIcon />, path: "/projects" },
         { name: "Experience", icon: <WorkIcon />, path: "/experience" },
         { name: "Contact", icon: <EmailIcon />, path: "/contact" },

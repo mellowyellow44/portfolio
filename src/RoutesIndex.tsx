@@ -1,7 +1,11 @@
 import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-dom";
-import Home from "./pages/Home/layout.tsx";
+
 import NavBar from "./components/NavBar.tsx";
-import { createTheme, ThemeProvider, Theme } from "@mui/material/styles";
+import Home from "./pages/Home/layout.tsx";
+import Skills from "./pages/Skills/layout.tsx";
+import MuiSkills from "./pages/Skills/MuiSkills.tsx";
+
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { useSelector } from "react-redux";
@@ -29,11 +33,21 @@ const RoutesIndex: React.FC = () => {
         <Router>
 
         <NavBar />
-        
+
         <Routes>
             <Route
               path="/"
               element={<Home />}
+            />
+
+            <Route
+              path="/skills"
+              element={<Skills />}
+            />
+
+            <Route
+              path="/skills/mui"
+              element={<MuiSkills />}
             />
 
             <Route
