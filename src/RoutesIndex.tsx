@@ -4,37 +4,57 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { Provider } from "react-redux";
-import { store } from "./redux/store.tsx";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-// import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
-// import moment from "moment";
-// import moment from "moment";
+
+import NavBar from "./components/NavBar.tsx";
 import Home from "./pages/Home/layout.tsx";
+import Skills from "./pages/Skills/layout.tsx";
+import SkillsOverView from "./pages/Skills/SkillsOverview.tsx";
+
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { useSelector } from "react-redux";
 
 const RoutesIndex: React.FC = () => {
+  const reduxTheme = useSelector((state: any) => state.theme);
+
+  const theme = createTheme({
+    ...reduxTheme,
+    palette: {
+      ...(reduxTheme?.palette?.mode && { mode: reduxTheme.palette.mode }),
+      ...(reduxTheme?.palette?.primary &&
+        { primary: reduxTheme.palette.primary }),
+      ...(reduxTheme?.palette?.secondary &&
+        { secondary: reduxTheme.palette.secondary }),
+    },
+    typography: {
+      ...(reduxTheme?.typography && { ...reduxTheme.typography }),
+    },
+  });
+
   return (
-    <Provider store={store}>
+    <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Router>
-
-          {/* <NavBar /> */}
+          <NavBar />
           <Routes>
             <Route
               path="/"
               element={<Home />}
             />
 
+            <Route path="/skills" element={<Skills />} />
+            
+            <Route path="/skills/:skillKey" element={<SkillsOverView />} />
+
             <Route
               path="*"
               element={<Navigate to="/" />}
             />
           </Routes>
-
         </Router>
       </LocalizationProvider>
-    </Provider>
+    </ThemeProvider>
   );
 };
 
