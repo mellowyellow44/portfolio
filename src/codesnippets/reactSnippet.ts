@@ -1,4 +1,4 @@
-export const skillExpertiseSnippet = `import React, { useState } from "react";
+export const reactSnippet = `import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { alpha, Box, Divider, Paper, Tab, Tabs, Typography, useTheme, } from "@mui/material";
 import Grid from "@mui/material/Grid";

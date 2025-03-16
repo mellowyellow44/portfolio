@@ -1,5 +1,8 @@
-import { skillExpertiseSnippet } from "../../codesnippets/skillsExpertise.ts";
+import { reactSnippet } from "../../codesnippets/reactSnippet.ts";
 import { themeCodeSnippet } from "../../codesnippets/mui.ts";
+import { typescriptCodeSnippet } from "../../codesnippets/typescript.ts";
+
+import RechartsDemo from "../../demos/recharts.tsx";
 
 export interface SkillCardProps {
     id: string;
@@ -9,9 +12,11 @@ export interface SkillCardProps {
     bulletPoints: string[];
     path: string;
     themeCodeSnippet?: string;
+    demo?: any
     advancedComponents?: {
         name: string;
         desc: string;
+        tags: string[]; // <-- ADDED TAGS PROPERTY
     }[];
     experience?: {
         company: string;
@@ -24,14 +29,6 @@ export interface SkillCardProps {
 export interface SkillsData {
     [key: string]: SkillCardProps;
 }
-
-// Skills organized in strategic groups:
-// 1. Core Frontend Technologies
-// 2. State Management & Data Handling
-// 3. Backend & Server Technologies
-// 4. Infrastructure & Cloud
-// 5. Quality & Security
-// 6. UI Frameworks & Design
 
 export const skillsData: SkillsData = {
     // ========================
@@ -56,34 +53,39 @@ export const skillsData: SkillsData = {
         path: "/skills/react",
         advancedComponents: [
             {
-                name: "Data Grid",
-                desc:
-                    "Complex data tables with sorting, filtering, and virtual scrolling",
+                name: "Custom Hooks",
+                desc: "Encapsulate and reuse stateful logic across multiple components",
+                tags: ["hooks", "reuse", "state"],
             },
             {
-                name: "Date/Time Pickers",
-                desc:
-                    "Calendar and time selection components with localization",
+                name: "Error Boundaries",
+                desc: "Gracefully handle rendering errors to prevent application crashes",
+                tags: ["error", "boundary", "safety"],
             },
             {
-                name: "Dialog System",
-                desc: "Modal workflows and multi-step forms",
+                name: "Portals",
+                desc: "Render children into a DOM node outside of the parent component hierarchy",
+                tags: ["portal", "DOM", "UI"],
             },
             {
-                name: "Material Charts",
-                desc: "Data visualization using recharts integration",
+                name: "Suspense and Lazy Loading",
+                desc: "Optimize bundle size and improve performance for code-splitting",
+                tags: ["suspense", "lazy", "performance"],
             },
             {
-                name: "Theme Provider",
-                desc: "Dynamic theming with light/dark mode support",
+                name: "Context Providers",
+                desc: "Share global data (e.g., themes or user info) without prop drilling",
+                tags: ["context", "global", "state"],
             },
             {
-                name: "Custom Styled Components",
-                desc: "Advanced component styling and extensions",
+                name: "Server Components (Experimental)",
+                desc: "Render React components on the server for better performance",
+                tags: ["server", "experimental", "render"],
             },
             {
-                name: "RTK Query Integration",
-                desc: "API data fetching with caching and synchronization",
+                name: "Concurrent Features (Experimental)",
+                desc: "Improve UI responsiveness by rendering updates concurrently",
+                tags: ["concurrent", "experimental", "responsive"],
             },
         ],
         experience: [
@@ -112,9 +114,8 @@ export const skillsData: SkillsData = {
                     "IoT monitoring dashboards with real-time data visualization",
             },
         ],
-        implementation:
-            `This portfolio showcases my React expertise through modular component design and optimization techniques like code splitting and lazy loading. I've implemented custom hooks for shared logic and created efficient component structures. The project demonstrates my ability to architect scalable React applications with clean, maintainable code.`,
-        themeCodeSnippet: skillExpertiseSnippet,
+        implementation: `This portfolio showcases my React expertise through modular component design and optimization techniques like code splitting and lazy loading. I've implemented custom hooks for shared logic and created efficient component structures. The project demonstrates my ability to architect scalable React applications with clean, maintainable code.`,
+        themeCodeSnippet: reactSnippet,
     },
 
     // TypeScript
@@ -136,31 +137,33 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Complex Type Systems",
-                desc:
-                    "Creation of advanced type hierarchies for robust application architecture",
+                desc: "Creation of advanced type hierarchies for robust application architecture",
+                tags: ["types", "complex", "architecture"],
             },
             {
                 name: "Generic Components",
-                desc:
-                    "Reusable components with type parameters for maximum flexibility",
+                desc: "Reusable components with type parameters for maximum flexibility",
+                tags: ["generic", "flexibility", "components"],
             },
             {
                 name: "Type Guards",
                 desc: "Runtime type checking with custom type predicates",
+                tags: ["guards", "runtime", "safety"],
             },
             {
                 name: "Mapped Types",
-                desc:
-                    "Dynamic type creation based on existing type definitions",
+                desc: "Dynamic type creation based on existing type definitions",
+                tags: ["mapped", "dynamic", "types"],
             },
             {
                 name: "Declaration Files",
                 desc: "Custom type definitions for third-party libraries",
+                tags: ["declaration", "third-party", "types"],
             },
             {
                 name: "Strict Null Checking",
-                desc:
-                    "Enhanced error prevention through null and undefined handling",
+                desc: "Enhanced error prevention through null and undefined handling",
+                tags: ["null", "strict", "error-prevention"],
             },
         ],
         experience: [
@@ -183,15 +186,15 @@ export const skillsData: SkillsData = {
                     "Financial application development with advanced TypeScript patterns",
             },
         ],
-        implementation:
-            `This portfolio leverages TypeScript throughout, showcasing type-safe component design, strict null checking, and interface-based architecture. The implementation demonstrates advanced typing patterns such as discriminated unions, generics, and utility types to ensure code reliability and maintainability.`,
+        implementation: `This portfolio leverages TypeScript throughout, showcasing type-safe component design, strict null checking, and interface-based architecture. The implementation demonstrates advanced typing patterns such as discriminated unions, generics, and utility types to ensure code reliability and maintainability.`,
+        themeCodeSnippet: typescriptCodeSnippet,
     },
 
     // Data Visualization
     datavis: {
         id: "datavis",
         title: "Data Visualization",
-        logoSrc: "/d3-logo.png",
+        logoSrc: "/highcharts-logo.png",
         description:
             "Tools and libraries for creating interactive, insightful visual representations of complex data.",
         bulletPoints: [
@@ -207,42 +210,58 @@ export const skillsData: SkillsData = {
             {
                 name: "D3.js Visualizations",
                 desc: "Custom, interactive data visualizations using D3.js",
+                tags: ["d3", "visualization", "interactive"],
             },
             {
                 name: "Highcharts Integration",
                 desc: "Enterprise-grade charts with accessibility support",
+                tags: ["highcharts", "charts", "enterprise"],
             },
             {
                 name: "Dashboard Systems",
                 desc: "Multi-chart dashboards with synchronized filtering",
+                tags: ["dashboard", "multi-chart", "filtering"],
             },
             {
                 name: "Real-Time Updates",
                 desc: "WebSocket integration for live data visualization",
+                tags: ["realtime", "websocket", "updates"],
             },
             {
                 name: "Responsive Charts",
                 desc: "Visualizations that adapt to different screen sizes",
+                tags: ["responsive", "charts", "adaptive"],
             },
             {
                 name: "Geospatial Visualization",
                 desc: "Map-based data representation with custom overlays",
+                tags: ["geospatial", "map", "overlays"],
             },
         ],
+        demo: () => <RechartsDemo />,
         experience: [
             {
-                company: "Sierra Telecom",
-                years: "1+ year",
-                focus: "IoT monitoring dashboard with real-time visualization",
+                company: "Precedent",
+                years: "2+ years",
+                focus: "RTK Query implementation for legal document management",
+            },
+            {
+                company: "CSAA Insurance Group",
+                years: "4+ years",
+                focus: "Redux for multi-product insurance quoting platforms",
             },
             {
                 company: "American Express",
                 years: "2+ years",
-                focus: "Financial metrics visualization and reporting",
+                focus: "Financial data state management with strict protocols",
+            },
+            {
+                company: "Sierra Telecom",
+                years: "1+ year",
+                focus: "Real-time state management for IoT dashboards",
             },
         ],
-        implementation:
-            `Data visualization components in this portfolio demonstrate interactive charts and dashboards using D3.js and Highcharts. The implementation features responsive design, WebSocket integration for real-time updates, and custom visualization types for complex data representation.`,
+        implementation: `Data visualization components in this portfolio demonstrate interactive charts and dashboards using D3.js and Highcharts. The implementation features responsive design, WebSocket integration for real-time updates, and custom visualization types for complex data representation.`,
     },
 
     // ========================
@@ -268,31 +287,33 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Redux Toolkit",
-                desc:
-                    "Simplified Redux implementation with reduced boilerplate",
+                desc: "Simplified Redux implementation with reduced boilerplate",
+                tags: ["redux", "toolkit", "boilerplate"],
             },
             {
                 name: "RTK Query",
-                desc:
-                    "Auto-generated API hooks with caching and synchronization",
+                desc: "Auto-generated API hooks with caching and synchronization",
+                tags: ["rtk", "query", "api"],
             },
             {
                 name: "Normalized State",
-                desc:
-                    "Efficient data normalization for complex state management",
+                desc: "Efficient data normalization for complex state management",
+                tags: ["normalized", "state", "efficiency"],
             },
             {
                 name: "Redux Middleware",
-                desc:
-                    "Custom middleware for logging, analytics, and side effects",
+                desc: "Custom middleware for logging, analytics, and side effects",
+                tags: ["middleware", "logging", "analytics"],
             },
             {
                 name: "Entity Adapters",
                 desc: "Simplified CRUD operations for collections of entities",
+                tags: ["entities", "CRUD", "adapter"],
             },
             {
                 name: "Selectors & Memoization",
                 desc: "Performance optimization through memorized selectors",
+                tags: ["selectors", "memoization", "performance"],
             },
         ],
         experience: [
@@ -317,8 +338,7 @@ export const skillsData: SkillsData = {
                 focus: "Real-time state management for IoT dashboards",
             },
         ],
-        implementation:
-            `This portfolio demonstrates advanced Redux patterns using Redux Toolkit and RTK Query. The implementation features normalized state structures, optimized selectors with reselect, and custom middleware for authentication and logging. The RTK Query integration showcases automatic data fetching, caching, and synchronization for optimal performance.`,
+        implementation: `This portfolio demonstrates advanced Redux patterns using Redux Toolkit and RTK Query. The implementation features normalized state structures, optimized selectors with reselect, and custom middleware for authentication and logging. The RTK Query integration showcases automatic data fetching, caching, and synchronization for optimal performance.`,
     },
 
     // PostgreSQL
@@ -341,27 +361,32 @@ export const skillsData: SkillsData = {
             {
                 name: "Query Optimization",
                 desc: "Performance tuning and execution plan analysis",
+                tags: ["query", "optimization", "performance"],
             },
             {
                 name: "JSON Operations",
-                desc:
-                    "Working with semi-structured data using JSON/JSONB types",
+                desc: "Working with semi-structured data using JSON/JSONB types",
+                tags: ["json", "semi-structured", "operations"],
             },
             {
                 name: "Indexing Strategies",
                 desc: "Advanced indexing for optimal query performance",
+                tags: ["index", "strategy", "performance"],
             },
             {
                 name: "Stored Procedures",
                 desc: "Server-side logic with PL/pgSQL",
+                tags: ["stored", "procedures", "plpgsql"],
             },
             {
                 name: "Security Implementation",
                 desc: "Role-based access control and row-level security",
+                tags: ["security", "roles", "access"],
             },
             {
                 name: "Data Migration",
                 desc: "Schema evolution and data migration strategies",
+                tags: ["migration", "schema", "evolution"],
             },
         ],
         experience: [
@@ -377,8 +402,7 @@ export const skillsData: SkillsData = {
                 focus: "Optimized database design for web applications",
             },
         ],
-        implementation:
-            `Database architecture in this portfolio utilizes PostgreSQL with optimized schema design, indexing strategies, and query performance. The implementation includes transaction management, data validation, and security controls to ensure data integrity and compliance with regulatory requirements.`,
+        implementation: `Database architecture in this portfolio utilizes PostgreSQL with optimized schema design, indexing strategies, and query performance. The implementation includes transaction management, data validation, and security controls to ensure data integrity and compliance with regulatory requirements.`,
     },
 
     // ========================
@@ -404,31 +428,33 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Express.js",
-                desc:
-                    "Web framework for building RESTful APIs and web applications",
+                desc: "Web framework for building RESTful APIs and web applications",
+                tags: ["express", "framework", "api"],
             },
             {
                 name: "Authentication",
-                desc:
-                    "JWT, OAuth 2.0, and role-based access control implementation",
+                desc: "JWT, OAuth 2.0, and role-based access control implementation",
+                tags: ["auth", "jwt", "oauth"],
             },
             {
                 name: "Database Integration",
                 desc: "PostgreSQL connections with ORM and query optimization",
+                tags: ["database", "integration", "ORM"],
             },
             {
                 name: "WebSockets",
                 desc: "Real-time bidirectional event-based communication",
+                tags: ["websockets", "real-time", "communication"],
             },
             {
                 name: "Middleware Architecture",
-                desc:
-                    "Custom middleware for logging, error handling, and authentication",
+                desc: "Custom middleware for logging, error handling, and authentication",
+                tags: ["middleware", "architecture", "custom"],
             },
             {
                 name: "API Documentation",
-                desc:
-                    "Automated API documentation generation with OpenAPI/Swagger",
+                desc: "Automated API documentation generation with OpenAPI/Swagger",
+                tags: ["API", "documentation", "swagger"],
             },
         ],
         experience: [
@@ -448,8 +474,7 @@ export const skillsData: SkillsData = {
                 focus: "Full-stack applications with Node.js backends",
             },
         ],
-        implementation:
-            `Backend services in this portfolio are built with Node.js and Express, implementing RESTful API patterns with comprehensive error handling and validation. The architecture demonstrates microservice design principles, JWT authentication, and database integration using PostgreSQL with optimized query performance.`,
+        implementation: `Backend services in this portfolio are built with Node.js and Express, implementing RESTful API patterns with comprehensive error handling and validation. The architecture demonstrates microservice design principles, JWT authentication, and database integration using PostgreSQL with optimized query performance.`,
     },
 
     // Deno
@@ -471,30 +496,33 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Permissions System",
-                desc:
-                    "Explicit permission granting for file, network, and environment access",
+                desc: "Explicit permission granting for file, network, and environment access",
+                tags: ["permissions", "security", "access"],
             },
             {
                 name: "Oak Framework",
-                desc:
-                    "Middleware framework for building web applications and APIs",
+                desc: "Middleware framework for building web applications and APIs",
+                tags: ["oak", "framework", "middleware"],
             },
             {
                 name: "Deno Deploy",
                 desc: "Edge runtime deployment for global distribution",
+                tags: ["deploy", "edge", "distribution"],
             },
             {
                 name: "Fresh Framework",
                 desc: "Next-gen web framework with zero runtime overhead",
+                tags: ["fresh", "modern", "framework"],
             },
             {
                 name: "Testing Tools",
-                desc:
-                    "Built-in testing capabilities with assertions and benchmarking",
+                desc: "Built-in testing capabilities with assertions and benchmarking",
+                tags: ["testing", "benchmark", "assertions"],
             },
             {
                 name: "WebSocket Server",
                 desc: "Real-time communication with built-in WebSocket support",
+                tags: ["websocket", "server", "realtime"],
             },
         ],
         experience: [
@@ -509,8 +537,7 @@ export const skillsData: SkillsData = {
                 focus: "Building secure microservices with TypeScript and Deno",
             },
         ],
-        implementation:
-            `This portfolio demonstrates Deno's capabilities through secure API endpoints with explicit permission handling and modern JavaScript features. The implementation highlights Deno's built-in TypeScript support, standardized module system, and security-first approach to web development.`,
+        implementation: `This portfolio demonstrates Deno's capabilities through secure API endpoints with explicit permission handling and modern JavaScript features. The implementation highlights Deno's built-in TypeScript support, standardized module system, and security-first approach to web development.`,
     },
 
     // ========================
@@ -536,30 +563,33 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Lambda & Serverless",
-                desc:
-                    "Event-driven, scalable computing without server management",
+                desc: "Event-driven, scalable computing without server management",
+                tags: ["lambda", "serverless", "event-driven"],
             },
             {
                 name: "EC2 & Containers",
                 desc: "Scalable virtual servers with container orchestration",
+                tags: ["ec2", "containers", "scalable"],
             },
             {
                 name: "S3 & Storage Solutions",
-                desc:
-                    "Object storage with lifecycle policies and security controls",
+                desc: "Object storage with lifecycle policies and security controls",
+                tags: ["s3", "storage", "object"],
             },
             {
                 name: "Infrastructure as Code",
-                desc:
-                    "Terraform and CloudFormation for infrastructure provisioning",
+                desc: "Terraform and CloudFormation for infrastructure provisioning",
+                tags: ["iac", "terraform", "cloudformation"],
             },
             {
                 name: "Security & Compliance",
                 desc: "IAM roles, policies, and security best practices",
+                tags: ["security", "compliance", "iam"],
             },
             {
                 name: "CI/CD Pipeline Integration",
                 desc: "Continuous integration and deployment workflows",
+                tags: ["cicd", "automation", "integration"],
             },
         ],
         experience: [
@@ -582,8 +612,7 @@ export const skillsData: SkillsData = {
                     "Serverless architecture for scalable, cost-effective solutions",
             },
         ],
-        implementation:
-            `This portfolio's infrastructure utilizes AWS services including Lambda for serverless functions, S3 for static assets, and CloudFront for content delivery. The implementation features Terraform for infrastructure as code, ensuring reproducible deployments with security best practices and IAM role-based access control.`,
+        implementation: `This portfolio's infrastructure utilizes AWS services including Lambda for serverless functions, S3 for static assets, and CloudFront for content delivery. The implementation features Terraform for infrastructure as code, ensuring reproducible deployments with security best practices and IAM role-based access control.`,
     },
 
     // ========================
@@ -609,39 +638,43 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Playwright & Cypress E2E Testing",
-                desc:
-                    "End-to-end testing across browsers with visual comparison and recording",
+                desc: "End-to-end testing across browsers with visual comparison and recording",
+                tags: ["playwright", "cypress", "e2e"],
             },
             {
                 name: "Jest Unit & Integration Testing",
-                desc:
-                    "JavaScript testing framework with mocking and code coverage",
+                desc: "JavaScript testing framework with mocking and code coverage",
+                tags: ["jest", "unit", "integration"],
             },
             {
                 name: "Storybook Component Library",
-                desc:
-                    "Interactive component documentation and visual testing environment",
+                desc: "Interactive component documentation and visual testing environment",
+                tags: ["storybook", "documentation", "UI"],
             },
             {
                 name: "TDD Methodology",
                 desc: "Test-driven development approach for reliable code",
+                tags: ["tdd", "test-driven", "development"],
             },
             {
                 name: "CI/CD Test Integration",
-                desc:
-                    "Automated testing within continuous integration pipelines",
+                desc: "Automated testing within continuous integration pipelines",
+                tags: ["cicd", "tests", "automation"],
             },
             {
                 name: "Mock Services & Fixtures",
                 desc: "Service mocking, fixtures, and dependency isolation",
+                tags: ["mocks", "fixtures", "isolation"],
             },
             {
                 name: "Test Coverage Analysis",
                 desc: "Comprehensive test coverage reporting and gap analysis",
+                tags: ["coverage", "analysis", "reports"],
             },
             {
                 name: "Visual Regression Testing",
                 desc: "Automated detection of visual UI changes with snapshots",
+                tags: ["visual", "regression", "snapshots"],
             },
         ],
         experience: [
@@ -664,8 +697,7 @@ export const skillsData: SkillsData = {
                     "Testing suites with Jest and Storybook for financial services compliance and documentation",
             },
         ],
-        implementation:
-            `This portfolio incorporates a comprehensive testing strategy across multiple levels: Jest for unit and integration tests, Playwright and Cypress for end-to-end tests, and Storybook for component documentation and visual testing. The implementation demonstrates test-driven development practices, snapshot testing for UI components, mocking strategies for API dependencies, and automated test pipelines integrated with CI/CD workflows to ensure code quality, consistent behavior, and visual integrity across the application.`,
+        implementation: `This portfolio incorporates a comprehensive testing strategy across multiple levels: Jest for unit and integration tests, Playwright and Cypress for end-to-end tests, and Storybook for component documentation and visual testing. The implementation demonstrates test-driven development practices, snapshot testing for UI components, mocking strategies for API dependencies, and automated test pipelines integrated with CI/CD workflows to ensure code quality, consistent behavior, and visual integrity across the application.`,
     },
 
     // Security
@@ -688,36 +720,39 @@ export const skillsData: SkillsData = {
             {
                 name: "OAuth 2.0 & OpenID Connect",
                 desc: "Advanced authentication flows with identity providers",
+                tags: ["oauth", "openid", "auth"],
             },
             {
                 name: "JWT Implementation",
                 desc: "Secure token-based authentication with best practices",
+                tags: ["jwt", "token", "security"],
             },
             {
                 name: "Role-Based Access Control",
-                desc:
-                    "Fine-grained permission systems for application security",
+                desc: "Fine-grained permission systems for application security",
+                tags: ["rbac", "roles", "access"],
             },
             {
                 name: "API Security",
                 desc: "Securing REST APIs against common vulnerabilities",
+                tags: ["api", "security", "vulnerabilities"],
             },
             {
                 name: "Data Protection",
                 desc: "Encryption and secure data handling practices",
+                tags: ["data", "encryption", "protection"],
             },
             {
                 name: "Compliance Framework",
-                desc:
-                    "Implementation of security controls for regulatory compliance",
+                desc: "Implementation of security controls for regulatory compliance",
+                tags: ["compliance", "framework", "regulation"],
             },
         ],
         experience: [
             {
                 company: "CSAA Insurance Group",
                 years: "4+ years",
-                focus:
-                    "Security protocols for confidential customer information",
+                focus: "Security protocols for confidential customer information",
             },
             {
                 company: "American Express",
@@ -730,8 +765,7 @@ export const skillsData: SkillsData = {
                 focus: "JWT authentication and role-based access control",
             },
         ],
-        implementation:
-            `Security implementation in this portfolio demonstrates OAuth 2.0 authentication flows, JWT token management with proper expiration and rotation, and role-based access control for protected resources. The approach includes secure data handling practices, input validation, and protection against common web vulnerabilities.`,
+        implementation: `Security implementation in this portfolio demonstrates OAuth 2.0 authentication flows, JWT token management with proper expiration and rotation, and role-based access control for protected resources. The approach includes secure data handling practices, input validation, and protection against common web vulnerabilities.`,
     },
 
     // ========================
@@ -757,42 +791,41 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Data Grid",
-                desc:
-                    "Complex data tables with sorting, filtering, and virtualization.",
+                desc: "Complex data tables with sorting, filtering, and virtualization.",
+                tags: ["datagrid", "tables", "sorting"],
             },
             {
                 name: "Date/Time Pickers",
-                desc:
-                    "Robust components for date and time selection with localization support.",
+                desc: "Robust components for date and time selection with localization support.",
+                tags: ["date", "time", "pickers"],
             },
             {
                 name: "Dialog System",
-                desc:
-                    "Modal dialogs for confirmations, forms, and multi-step interactions.",
+                desc: "Modal dialogs for confirmations, forms, and multi-step interactions.",
+                tags: ["dialog", "modal", "interaction"],
             },
             {
                 name: "Theme Provider",
-                desc:
-                    "Customizable theming solution for dynamic light/dark mode and branding.",
+                desc: "Customizable theming solution for dynamic light/dark mode and branding.",
+                tags: ["theme", "provider", "customization"],
             },
             {
                 name: "Custom Styled Components",
-                desc:
-                    "Extending and overriding default MUI styles for unique interfaces.",
+                desc: "Extending and overriding default MUI styles for unique interfaces.",
+                tags: ["styled", "custom", "components"],
             },
             {
                 name: "Material Charts",
-                desc:
-                    "Data visualization components using recharts integration.",
+                desc: "Data visualization components using recharts integration.",
+                tags: ["charts", "material", "data"],
             },
             {
                 name: "Form Components",
-                desc:
-                    "Advanced form controls with validation and state management.",
+                desc: "Advanced form controls with validation and state management.",
+                tags: ["forms", "validation", "state"],
             },
         ],
-        implementation:
-            `This portfolio features a custom Material UI theme with dynamic light/dark mode toggling via the ThemeToggleSwitch component. The implementation demonstrates advanced component customization through styled components, theme extensions, and responsive design patterns integrated with Redux for state persistence.`,
+        implementation: `This portfolio features a custom Material UI theme with dynamic light/dark mode toggling via the ThemeToggleSwitch component. The implementation demonstrates advanced component customization through styled components, theme extensions, and responsive design patterns integrated with Redux for state persistence.`,
         experience: [
             {
                 company: "Precedent",
@@ -835,31 +868,33 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Custom Design System",
-                desc:
-                    "Extending Tailwind's configuration for branded design systems",
+                desc: "Extending Tailwind's configuration for branded design systems",
+                tags: ["design", "system", "tailwind"],
             },
             {
                 name: "Responsive Patterns",
-                desc:
-                    "Complex responsive layouts using Tailwind's breakpoint system",
+                desc: "Complex responsive layouts using Tailwind's breakpoint system",
+                tags: ["responsive", "patterns", "layout"],
             },
             {
                 name: "Dark Mode",
-                desc:
-                    "Implementation of theme-aware components with dark mode support",
+                desc: "Implementation of theme-aware components with dark mode support",
+                tags: ["dark", "mode", "theme"],
             },
             {
                 name: "Animation",
-                desc:
-                    "Custom animations and transitions using Tailwind's utilities",
+                desc: "Custom animations and transitions using Tailwind's utilities",
+                tags: ["animation", "transitions", "tailwind"],
             },
             {
                 name: "Form Styling",
                 desc: "Consistent form element styling across browsers",
+                tags: ["forms", "styling", "consistency"],
             },
             {
                 name: "Component Libraries",
                 desc: "Integration with component libraries like Headless UI",
+                tags: ["components", "libraries", "integration"],
             },
         ],
         experience: [
@@ -874,8 +909,7 @@ export const skillsData: SkillsData = {
                 focus: "Rapid UI development with utility-first approach",
             },
         ],
-        implementation:
-            `This portfolio showcases Tailwind CSS implementation with custom design token integration, responsive layouts, and theme-aware components. The approach demonstrates component composition using utility classes while maintaining design consistency and accessibility.`,
+        implementation: `This portfolio showcases Tailwind CSS implementation with custom design token integration, responsive layouts, and theme-aware components. The approach demonstrates component composition using utility classes while maintaining design consistency and accessibility.`,
     },
 
     // Python
@@ -897,30 +931,33 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "FastAPI Framework",
-                desc:
-                    "High-performance, easy-to-use framework for building APIs",
+                desc: "High-performance, easy-to-use framework for building APIs",
+                tags: ["fastapi", "api", "framework"],
             },
             {
                 name: "Data Processing",
                 desc: "Pandas and NumPy for efficient data manipulation",
+                tags: ["pandas", "numpy", "processing"],
             },
             {
                 name: "Automation Scripts",
-                desc:
-                    "Task automation for development and deployment workflows",
+                desc: "Task automation for development and deployment workflows",
+                tags: ["automation", "scripts", "scripting"],
             },
             {
                 name: "API Integration",
                 desc: "Connecting with third-party services and data sources",
+                tags: ["api", "integration", "connectivity"],
             },
             {
                 name: "Testing Frameworks",
                 desc: "PyTest and unittest for comprehensive test coverage",
+                tags: ["pytest", "testing", "unittest"],
             },
             {
                 name: "Data Visualization",
-                desc:
-                    "Matplotlib and Seaborn for insightful data representations",
+                desc: "Matplotlib and Seaborn for insightful data representations",
+                tags: ["matplotlib", "seaborn", "visualization"],
             },
         ],
         experience: [
@@ -936,8 +973,7 @@ export const skillsData: SkillsData = {
                 focus: "Backend services and data processing scripts",
             },
         ],
-        implementation:
-            `Python components in this portfolio demonstrate data processing capabilities, API integration, and automation scripts. The implementation highlights Python's versatility for backend services, data manipulation, and system integration tasks with clean, maintainable code.`,
+        implementation: `Python components in this portfolio demonstrate data processing capabilities, API integration, and automation scripts. The implementation highlights Python's versatility for backend services, data manipulation, and system integration tasks with clean, maintainable code.`,
     },
 
     // PDF Manipulation
@@ -959,37 +995,38 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "PSPDFKit Implementation",
-                desc:
-                    "Enterprise-grade PDF viewing, editing, and annotation capabilities",
+                desc: "Enterprise-grade PDF viewing, editing, and annotation capabilities",
+                tags: ["pspdfkit", "pdf", "annotation"],
             },
             {
                 name: "Data Extraction",
-                desc:
-                    "Bounding box identification and content extraction for AI processing",
+                desc: "Bounding box identification and content extraction for AI processing",
+                tags: ["extraction", "bounding-box", "ai"],
             },
             {
                 name: "Form Field Operations",
                 desc: "Dynamic form creation, field population, and validation",
+                tags: ["forms", "fields", "operations"],
             },
             {
                 name: "Document Generation",
-                desc:
-                    "Programmatic PDF creation from various data sources and templates",
+                desc: "Programmatic PDF creation from various data sources and templates",
+                tags: ["generation", "pdf", "templates"],
             },
             {
                 name: "AI Integration",
-                desc:
-                    "Machine learning for intelligent document processing and analysis",
+                desc: "Machine learning for intelligent document processing and analysis",
+                tags: ["ai", "integration", "ml"],
             },
             {
                 name: "Digital Signatures",
-                desc:
-                    "Secure document signing, verification, and certification",
+                desc: "Secure document signing, verification, and certification",
+                tags: ["digital", "signature", "security"],
             },
             {
                 name: "Document Collaboration",
-                desc:
-                    "Real-time collaborative editing and annotation of PDF documents",
+                desc: "Real-time collaborative editing and annotation of PDF documents",
+                tags: ["collaboration", "editing", "realtime"],
             },
         ],
         experience: [
@@ -1006,8 +1043,7 @@ export const skillsData: SkillsData = {
                     "Insurance document management with PSPDFKit integration for policy review",
             },
         ],
-        implementation:
-            `PDF manipulation components in this portfolio showcase my extensive experience with PSPDFKit for comprehensive document handling. I've implemented advanced PSPDFKit features including document viewing, editing, annotation, and collaboration in web applications. The implementation also demonstrates custom integrations for dynamic content extraction, form field manipulation, and seamless integration with AI services for intelligent document processing. My work includes secure document handling with proper validation and error management for legal and insurance document workflows, significantly improving documentation accuracy and processing efficiency.`,
+        implementation: `PDF manipulation components in this portfolio showcase my extensive experience with PSPDFKit for comprehensive document handling. I've implemented advanced PSPDFKit features including document viewing, editing, annotation, and collaboration in web applications. The implementation also demonstrates custom integrations for dynamic content extraction, form field manipulation, and seamless integration with AI services for intelligent document processing. My work includes secure document handling with proper validation and error management for legal and insurance document workflows, significantly improving documentation accuracy and processing efficiency.`,
     },
 
     // WebSockets
@@ -1030,28 +1066,32 @@ export const skillsData: SkillsData = {
             {
                 name: "Socket.io Implementation",
                 desc: "Cross-browser WebSocket implementation with fallbacks",
+                tags: ["socket.io", "websocket", "fallbacks"],
             },
             {
                 name: "Secure Connections",
                 desc: "Encrypted WebSocket connections with authentication",
+                tags: ["secure", "encryption", "auth"],
             },
             {
                 name: "Event Broadcasting",
                 desc: "Real-time event distribution to multiple clients",
+                tags: ["broadcast", "events", "realtime"],
             },
             {
                 name: "Connection Management",
-                desc:
-                    "Handling connection states, reconnection, and error recovery",
+                desc: "Handling connection states, reconnection, and error recovery",
+                tags: ["connection", "management", "reconnect"],
             },
             {
                 name: "Message Serialization",
                 desc: "Efficient data formatting for real-time transmission",
+                tags: ["serialization", "formatting", "data"],
             },
             {
                 name: "Scalable Architecture",
-                desc:
-                    "Designing WebSocket systems for high-concurrency environments",
+                desc: "Designing WebSocket systems for high-concurrency environments",
+                tags: ["scalable", "architecture", "concurrency"],
             },
         ],
         experience: [
@@ -1067,11 +1107,9 @@ export const skillsData: SkillsData = {
                     "Building interactive dashboard applications with live updates",
             },
         ],
-        implementation:
-            `WebSocket integration in this portfolio provides real-time data updates for interactive components and live dashboards. The implementation demonstrates secure connection handling, efficient message serialization, and graceful reconnection strategies for reliable real-time communication.`,
+        implementation: `WebSocket integration in this portfolio provides real-time data updates for interactive components and live dashboards. The implementation demonstrates secure connection handling, efficient message serialization, and graceful reconnection strategies for reliable real-time communication.`,
     },
 
-    // Micro-Frontend Architecture
     // Micro-Frontend Architecture
     microfrontend: {
         id: "microfrontend",
@@ -1091,38 +1129,38 @@ export const skillsData: SkillsData = {
         advancedComponents: [
             {
                 name: "Webpack Module Federation",
-                desc:
-                    "Advanced Webpack 5 configuration for dynamic loading of remote modules at runtime",
+                desc: "Advanced Webpack 5 configuration for dynamic loading of remote modules at runtime",
+                tags: ["webpack", "module", "federation"],
             },
             {
                 name: "Bundle Optimization",
-                desc:
-                    "Webpack chunking strategies and shared dependencies for optimized loading",
+                desc: "Webpack chunking strategies and shared dependencies for optimized loading",
+                tags: ["bundle", "optimization", "chunking"],
             },
             {
                 name: "Cross-Product Navigation",
-                desc:
-                    "Unified navigation system across independently deployed applications",
+                desc: "Unified navigation system across independently deployed applications",
+                tags: ["navigation", "cross-product", "integration"],
             },
             {
                 name: "Shared Authentication",
-                desc:
-                    "Centralized authentication and authorization across product suite",
+                desc: "Centralized authentication and authorization across product suite",
+                tags: ["authentication", "shared", "auth"],
             },
             {
                 name: "Distributed State",
-                desc:
-                    "State management and data sharing across independent applications",
+                desc: "State management and data sharing across independent applications",
+                tags: ["state", "distributed", "management"],
             },
             {
                 name: "Design System Integration",
-                desc:
-                    "Consistent UI implementation across independently developed modules",
+                desc: "Consistent UI implementation across independently developed modules",
+                tags: ["design", "system", "integration"],
             },
             {
                 name: "Multi-Team Coordination",
-                desc:
-                    "Processes and tools for coordinating development across product teams",
+                desc: "Processes and tools for coordinating development across product teams",
+                tags: ["coordination", "teams", "collaboration"],
             },
         ],
         experience: [
@@ -1140,6 +1178,5 @@ export const skillsData: SkillsData = {
             },
         ],
         implementation: "",
-        // `This portfolio demonstrates advanced micro-frontend architectural patterns implemented at Precedent for their multi-product suite, leveraging Webpack 5 Module Federation as the technical foundation. The architecture features independently deployable product modules that compose into a cohesive ecosystem while maintaining separate codebases and release cycles. Key implementations include federated modules for cross-product functionality, optimized Webpack configurations for shared dependencies, dynamic imports for code splitting, and careful bundle optimization to minimize loading times. This approach enabled multiple teams to work autonomously while delivering a seamless user experience across the entire product suite, significantly improving development velocity and product scalability.`,
     },
 };
