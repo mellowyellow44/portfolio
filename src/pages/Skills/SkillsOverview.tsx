@@ -1,12 +1,34 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { alpha, Box, Divider, Paper, Tab, Tabs, Typography, useTheme, } from "@mui/material";
-import Grid from "@mui/material/Grid";
+import { 
+  alpha, 
+  Box, 
+  Divider, 
+  Paper, 
+  Tab, 
+  Tabs, 
+  Typography, 
+  useTheme,
+  Card,
+  CardContent,
+  Chip,
+  Avatar,
+  Grid
+} from "@mui/material";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot
+} from "@mui/lab";
+import WorkIcon from '@mui/icons-material/Work';
+import CodeIcon from '@mui/icons-material/Code';
 import ViewFullSourceCode from "../../components/ViewFullSourceCode";
 import ExpertiseHeader from "./ExpertiseHeader";
-import { muiExpertiseHeaderProps, reactExpertiseHeaderProps, } from "./ExpertiseProps";
+import { muiExpertiseHeaderProps, reactExpertiseHeaderProps } from "./ExpertiseProps";
 import { githubRepoLink } from "../../constants/links";
-import ThemeToggleSwitch from "../../components/ThemeToggleSwitch";
 import CodeBlock from "../../components/CodeBlock";
 import TabPanel from "../../components/TabPanel";
 import { skillsData, SkillsData } from "./skillsData";
@@ -49,11 +71,28 @@ const SkillExpertise: React.FC = () => {
         onChange={handleTabChange}
         variant="scrollable"
         scrollButtons="auto"
-        sx={{ borderBottom: 1, borderColor: "divider" }}
+        sx={{ 
+          borderBottom: 1, 
+          borderColor: "divider",
+          mb: 3,
+          '& .MuiTab-root': {
+            fontWeight: 'medium',
+            fontSize: '0.95rem',
+            minHeight: 48,
+            transition: 'all 0.2s ease',
+            '&:hover': {
+              backgroundColor: alpha(theme.palette.primary.main, 0.05),
+            },
+          },
+          '& .Mui-selected': {
+            color: theme.palette.primary.main,
+            fontWeight: 'bold',
+          },
+        }}
       >
-        <Tab label="Implementation" />
-        <Tab label="Experience" />
-        <Tab label="Advanced Components" />
+        <Tab label="Implementation" icon={<CodeIcon />} iconPosition="start" />
+        <Tab label="Experience" icon={<WorkIcon />} iconPosition="start" />
+        <Tab label="Advanced Components" icon={<CodeIcon />} iconPosition="start" />
       </Tabs>
 
       <TabPanel value={tabIndex} index={0}>
@@ -70,64 +109,142 @@ const SkillExpertise: React.FC = () => {
       </TabPanel>
 
       <TabPanel value={tabIndex} index={1}>
-        <Typography variant="h6" gutterBottom>
-          Professional {currentSkill.title} Experience
-        </Typography>
-        <Grid container spacing={2}>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h5" gutterBottom sx={{ 
+            fontWeight: 'bold',
+            color: theme.palette.primary.main,
+            borderBottom: `2px solid ${theme.palette.primary.main}`,
+            pb: 1,
+            display: 'inline-block'
+          }}>
+            Professional {currentSkill.title} Experience
+          </Typography>
+        </Box>
+
+        <Timeline position="alternate" sx={{ p: 0 }}>
           {currentSkill.experience &&
             currentSkill.experience.map((job, index) => (
-              <Grid item xs={12} key={index}>
-                <Box sx={{ display: "flex", mb: 2 }}>
-                  <Box sx={{ minWidth: 120 }}>
-                    <Typography variant="subtitle1" fontWeight="bold">
-                      {job.company}
-                    </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      {job.years}
-                    </Typography>
-                  </Box>
-                  <Divider
-                    orientation="vertical"
-                    flexItem
-                    sx={{ mx: 2 }}
-                  />
-                  <Box>
-                    <Typography variant="body2">
-                      {job.focus}
-                    </Typography>
-                  </Box>
-                </Box>
-                {index < (currentSkill.experience?.length ?? 0) - 1 && (
-                  <Divider sx={{ my: 2 }} />
-                )}
-              </Grid>
+              <TimelineItem key={index}>
+                <TimelineSeparator>
+                  <TimelineDot color="primary">
+                    <WorkIcon />
+                  </TimelineDot>
+                  {index < (currentSkill.experience?.length ?? 0) - 1 && <TimelineConnector />}
+                </TimelineSeparator>
+                <TimelineContent>
+                  <Card 
+                    elevation={2} 
+                    sx={{ 
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                      '&:hover': { 
+                        transform: 'translateY(-5px)',
+                        boxShadow: 6
+                      },
+                      border: `1px solid ${alpha(theme.palette.primary.main, 0.2)}`,
+                      overflow: 'visible',
+                      position: 'relative'
+                    }}
+                  >
+                    <Chip 
+                      label={job.years}
+                      color="primary"
+                      size="small"
+                      sx={{ 
+                        position: 'absolute',
+                        top: -12,
+                        right: 16,
+                        fontWeight: 'bold',
+                      }}
+                    />
+                    <CardContent>
+                      <Typography variant="h6" fontWeight="bold" color="primary">
+                        {job.company}
+                      </Typography>
+                      <Divider sx={{ my: 1.5 }} />
+                      <Typography variant="body1" sx={{ 
+                        lineHeight: 1.6,
+                        color: theme.palette.text.secondary
+                      }}>
+                        {job.focus}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </TimelineContent>
+              </TimelineItem>
             ))}
-        </Grid>
+        </Timeline>
       </TabPanel>
 
       <TabPanel value={tabIndex} index={2}>
-        <Typography variant="h6" gutterBottom>
-          Advanced {currentSkill.title} Components
-        </Typography>
-        <Grid container spacing={2}>
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="h5" gutterBottom sx={{ 
+            fontWeight: 'bold',
+            color: theme.palette.primary.main,
+            borderBottom: `2px solid ${theme.palette.primary.main}`,
+            pb: 1,
+            display: 'inline-block'
+          }}>
+            Advanced {currentSkill.title} Components
+          </Typography>
+        </Box>
+        
+        <Grid container spacing={3}>
           {currentSkill.advancedComponents &&
             currentSkill.advancedComponents.map((component, index) => (
               <Grid item xs={12} md={6} key={index}>
-                <Paper
-                  elevation={1}
+                <Card 
+                  elevation={2} 
                   sx={{
-                    p: 2,
-                    height: "100%",
-                    borderLeft: `4px solid ${theme.palette.primary.main}`,
+                    height: '100%',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    '&:hover': { 
+                      transform: 'translateY(-5px)',
+                      boxShadow: 6
+                    },
+                    display: 'flex',
+                    flexDirection: 'column',
+                    position: 'relative',
+                    overflow: 'hidden',
                   }}
                 >
-                  <Typography variant="subtitle1" fontWeight="bold">
-                    {component.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {component.desc}
-                  </Typography>
-                </Paper>
+                  <Box sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '5px',
+                    height: '100%',
+                    backgroundColor: theme.palette.primary.main
+                  }} />
+                  
+                  <CardContent sx={{ flex: 1 }}>
+                    <Typography variant="h6" fontWeight="bold" color="primary" gutterBottom>
+                      {component.name}
+                    </Typography>
+                    
+                    <Typography variant="body1" sx={{ 
+                      color: theme.palette.text.secondary,
+                      lineHeight: 1.6 
+                    }}>
+                      {component.desc}
+                    </Typography>
+                    
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 2 }}>
+                      {/* Assume each component might have tags - if they don't, you can add them to your data model */}
+                      {/* {component.tags && component.tags.map((tag, idx) => (
+                        <Chip 
+                          key={idx} 
+                          label={tag} 
+                          size="small" 
+                          variant="outlined"
+                          sx={{ 
+                            borderColor: alpha(theme.palette.primary.main, 0.4),
+                            color: theme.palette.primary.main
+                          }}
+                        />
+                      ))} */}
+                    </Box>
+                  </CardContent>
+                </Card>
               </Grid>
             ))}
         </Grid>

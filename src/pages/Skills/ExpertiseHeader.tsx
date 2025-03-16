@@ -5,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { ExpertiseHeaderProps } from "./ExpertiseProps.tsx";
 
 const ExpertiseHeader: React.FC<ExpertiseHeaderProps> = (
-    { title, description, chips },
+    { title, description, chips = [] },
 ) => {
     const navigate = useNavigate();
 
