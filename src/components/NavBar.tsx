@@ -4,6 +4,7 @@ import { alpha, AppBar, Avatar, Box, Button, Container, Divider, Drawer, Fade, I
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
+import ArticleIcon from '@mui/icons-material/Article';
 // import CodeIcon from "@mui/icons-material/Code";
 // import WorkIcon from "@mui/icons-material/Work";
 // import EmailIcon from "@mui/icons-material/Email";
@@ -52,9 +53,7 @@ const Navbar = () => {
     // Navigation items
     const navItems = [
         { name: "Skills", icon: <PersonIcon />, path: "/skills" },
-        // { name: "Projects", icon: <CodeIcon />, path: "/projects" },
-        // { name: "Experience", icon: <WorkIcon />, path: "/experience" },
-        // { name: "Contact", icon: <EmailIcon />, path: "/contact" },
+        { name: "Resume", icon: <ArticleIcon />, path: "/resume" },
     ];
 
     // Social items

@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar.tsx";
 // Lazy load components instead of importing directly
 const Home = lazy(() => import("./pages/Home/layout.tsx"));
 const Skills = lazy(() => import("./pages/Skills/Layout.tsx"));
+const Resume = lazy(() => import("./pages/Resume/Layout.tsx"));
 const SkillsOverView = lazy(() => import("./pages/Skills/SkillsOverview.tsx"));
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -48,9 +49,20 @@ const RoutesIndex: React.FC = () => {
                 element={<Home />}
               />
 
-              <Route path="/skills" element={<Skills />} />
-              
-              <Route path="/skills/:skillKey" element={<SkillsOverView />} />
+              <Route
+                path="/skills"
+                element={<Skills />}
+              />
+
+              <Route
+                path="/skills/:skillKey"
+                element={<SkillsOverView />}
+              />
+
+              <Route
+                path="/resume"
+                element={<Resume />}
+              />
 
               <Route
                 path="*"

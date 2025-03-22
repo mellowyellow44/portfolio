@@ -21,6 +21,7 @@ import StorageIcon from "@mui/icons-material/Storage";
 import CloudIcon from "@mui/icons-material/Cloud";
 import SecurityIcon from "@mui/icons-material/Security";
 import BrushIcon from "@mui/icons-material/Brush";
+import AppsIcon from "@mui/icons-material/Apps"; // Added icon for "All" category
 import { SkillCardProps, skillsData } from "./skillsData";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,8 +31,11 @@ import {
     setSelectedCategory,
 } from "../../redux/slices/skills";
 import { JSX } from "react/jsx-runtime";
+import PageHeader from "../../components/PageHeader";
+
 // Define skill categories for filtering
 const categories = [
+    { name: "All", icon: <AppsIcon />, key: null }, // Added "All" category
     { name: "Frontend", icon: <CodeIcon />, key: "frontend" },
     { name: "Data", icon: <StorageIcon />, key: "data" },
     { name: "Cloud", icon: <CloudIcon />, key: "cloud" },
@@ -95,12 +99,8 @@ const SkillsPage: React.FC = () => {
     };
 
     // Handle category selection
-    const handleCategoryClick = (category: string) => {
-        if (selectedCategory === category) {
-            dispatch(setSelectedCategory(null));
-        } else {
-            dispatch(setSelectedCategory(category));
-        }
+    const handleCategoryClick = (category: string | null) => {
+        dispatch(setSelectedCategory(category));
     };
 
     // Clear search field
@@ -134,7 +134,7 @@ const SkillsPage: React.FC = () => {
     return (
         <Box
             sx={{
-                py: 8,
+                py: 4,
                 minHeight: "100vh",
                 background: theme.palette.mode === "light"
                     ? "linear-gradient(120deg, #f0f0f0 0%, #ffffff 100%)"
@@ -143,31 +143,12 @@ const SkillsPage: React.FC = () => {
         >
             <Container maxWidth="lg">
                 <Box sx={{ mb: 6, textAlign: "center" }}>
-                    <Typography
-                        variant="h2"
-                        component="h1"
-                        gutterBottom
-                        sx={{
-                            fontWeight: 800,
-                            backgroundImage: theme.palette.mode === "light"
-                                ? "linear-gradient(45deg, #007FFF 30%, #0059B2 90%)"
-                                : "linear-gradient(45deg, #5C9CE6 30%, #83B4E6 90%)",
-                            WebkitBackgroundClip: "text",
-                            WebkitTextFillColor: "transparent",
-                            mb: 2,
-                        }}
-                    >
-                        Technical Skills
-                    </Typography>
-                    <Typography
-                        variant="h6"
-                        color="text.secondary"
-                        sx={{ maxWidth: 800, mx: "auto" }}
-                    >
-                        A showcase of my expertise across various technologies
-                        and frameworks
-                    </Typography>
 
+                    <PageHeader
+                        title="Technical Skills"
+                        subtitle="A showcase of my expertise across various technologies and frameworks."
+                    />
+                    
                     {/* Search box with animation */}
                     <Paper
                         elevation={3}
@@ -241,7 +222,7 @@ const SkillsPage: React.FC = () => {
                     >
                         {categories.map((category) => (
                             <Chip
-                                key={category.key}
+                                key={category.name}
                                 label={category.name}
                                 icon={category.icon}
                                 onClick={() =>
