@@ -1,14 +1,17 @@
+import React, { lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
   Route,
   Routes,
 } from "react-router-dom";
+import StylishLoader from "./components/StylishLoader.tsx";
 
 import NavBar from "./components/NavBar.tsx";
-import Home from "./pages/Home/layout.tsx";
-import Skills from "./pages/Skills/layout.tsx";
-import SkillsOverView from "./pages/Skills/SkillsOverview.tsx";
+// Lazy load components instead of importing directly
+const Home = lazy(() => import("./pages/Home/layout.tsx"));
+const Skills = lazy(() => import("./pages/Skills/Layout.tsx"));
+const SkillsOverView = lazy(() => import("./pages/Skills/SkillsOverview.tsx"));
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -37,21 +40,24 @@ const RoutesIndex: React.FC = () => {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Router>
           <NavBar />
-          <Routes>
-            <Route
-              path="/"
-              element={<Home />}
-            />
+          {/* Add Suspense with a fallback UI while components are loading */}
+          <Suspense fallback={<StylishLoader />}>
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
 
-            <Route path="/skills" element={<Skills />} />
-            
-            <Route path="/skills/:skillKey" element={<SkillsOverView />} />
+              <Route path="/skills" element={<Skills />} />
+              
+              <Route path="/skills/:skillKey" element={<SkillsOverView />} />
 
-            <Route
-              path="*"
-              element={<Navigate to="/" />}
-            />
-          </Routes>
+              <Route
+                path="*"
+                element={<Navigate to="/" />}
+              />
+            </Routes>
+          </Suspense>
         </Router>
       </LocalizationProvider>
     </ThemeProvider>

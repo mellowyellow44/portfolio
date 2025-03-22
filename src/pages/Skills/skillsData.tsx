@@ -113,6 +113,12 @@ export const skillsData: SkillsData = {
                 focus:
                     "IoT monitoring dashboards with real-time data visualization",
             },
+            {
+                company: "Freelance",
+                years: "2+ years",
+                focus:
+                    "Custom React applications for various clients, including e-commerce and portfolio sites",
+            }
         ],
         implementation: `This portfolio showcases my React expertise through modular component design and optimization techniques like code splitting and lazy loading. I've implemented custom hooks for shared logic and created efficient component structures. The project demonstrates my ability to architect scalable React applications with clean, maintainable code.`,
         themeCodeSnippet: reactSnippet,
@@ -260,6 +266,11 @@ export const skillsData: SkillsData = {
                 years: "1+ year",
                 focus: "Real-time state management for IoT dashboards",
             },
+            {
+                company: "Freelance",
+                years: "2+ years",
+                focus: "Custom data visualization solutions for various clients",
+            }
         ],
         implementation: `Data visualization components in this portfolio demonstrate interactive charts and dashboards using D3.js and Highcharts. The implementation features responsive design, WebSocket integration for real-time updates, and custom visualization types for complex data representation.`,
     },
@@ -337,6 +348,11 @@ export const skillsData: SkillsData = {
                 years: "1+ year",
                 focus: "Real-time state management for IoT dashboards",
             },
+            {
+                company: "Freelance",
+                years: "2+ years",
+                focus: "Custom state management solutions for various clients",
+            }
         ],
         implementation: `This portfolio demonstrates advanced Redux patterns using Redux Toolkit and RTK Query. The implementation features normalized state structures, optimized selectors with reselect, and custom middleware for authentication and logging. The RTK Query integration showcases automatic data fetching, caching, and synchronization for optimal performance.`,
     },
