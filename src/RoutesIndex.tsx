@@ -13,6 +13,12 @@ const Home = lazy(() => import("./pages/Home/layout.tsx"));
 const Skills = lazy(() => import("./pages/Skills/Layout.tsx"));
 const Resume = lazy(() => import("./pages/Resume/Layout.tsx"));
 const SkillsOverView = lazy(() => import("./pages/Skills/SkillsOverview.tsx"));
+const TailWindFrequencies = lazy(() =>
+  import("./demos/TailwindFrequencies.tsx")
+);
+const RechartsMouseEventDataViz = lazy(() =>
+  import("./demos/RechartsMouseEventDataViz.tsx")
+);
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -62,6 +68,16 @@ const RoutesIndex: React.FC = () => {
               <Route
                 path="/resume"
                 element={<Resume />}
+              />
+
+              <Route
+                path="demos/tailwind-frequencies"
+                element={<TailWindFrequencies />}
+              />
+
+              <Route
+                path="demos/recharts-mouse-event-data-viz"
+                element={<RechartsMouseEventDataViz />}
               />
 
               <Route

@@ -2,7 +2,7 @@ import { reactSnippet } from "../../codesnippets/reactSnippet.ts";
 import { themeCodeSnippet } from "../../codesnippets/mui.ts";
 import { typescriptCodeSnippet } from "../../codesnippets/typescript.ts";
 
-import RechartsDemo from "../../demos/recharts.tsx";
+import RechartsDemo from "../../demos/RechartsMouseEventDataViz.tsx";
 
 export interface SkillCardProps {
     id: string;

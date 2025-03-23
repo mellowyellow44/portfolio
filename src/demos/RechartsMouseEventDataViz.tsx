@@ -4,44 +4,8 @@ import React, {
   useRef,
   MouseEvent as ReactMouseEvent,
 } from "react";
-import {
-  ThemeProvider,
-  createTheme,
-  CssBaseline,
-  Box,
-  Grid,
-  Paper,
-  Typography,
-  IconButton,
-  Tooltip,
-  Badge,
-  Card,
-  CardContent,
-  FormControlLabel,
-  Switch,
-  Divider,
-  alpha,
-  useMediaQuery,
-  Stack,
-} from "@mui/material";
-import {
-  ResponsiveContainer,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip as RechartsTooltip,
-  Legend,
-  BarChart,
-  Bar,
-  ScatterChart,
-  Scatter,
-  PieChart,
-  Pie,
-  Cell,
-  LineChart,
-  Line,
-  ReferenceLine,
-} from "recharts";
+import { ThemeProvider, createTheme, CssBaseline, Box, Grid, Paper, Typography, IconButton, Tooltip, Badge, Card, CardContent, FormControlLabel, Switch, Divider, alpha, useMediaQuery, } from "@mui/material";
+import { ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip as RechartsTooltip, Legend, BarChart, Bar, ScatterChart, Scatter, PieChart, Pie, Cell, LineChart, Line, ReferenceLine, } from "recharts";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import MouseIcon from "@mui/icons-material/Mouse";
 import TimelineIcon from "@mui/icons-material/Timeline";
