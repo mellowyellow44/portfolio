@@ -10,7 +10,7 @@ import StylishLoader from "./components/StylishLoader.tsx";
 import NavBar from "./components/NavBar.tsx";
 // Lazy load components instead of importing directly
 const Home = lazy(() => import("./pages/Home/layout.tsx"));
-const Skills = lazy(() => import("./pages/Skills/Layout.tsx"));
+const Skills = lazy(() => import("./pages/Skills/SkillsLayout.tsx"));
 const Resume = lazy(() => import("./pages/Resume/Layout.tsx"));
 const Demos = lazy(() => import("./demos/layout.tsx"));
 const SkillsOverView = lazy(() => import("./pages/Skills/SkillsOverview.tsx"));
