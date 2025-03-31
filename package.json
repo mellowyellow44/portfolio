@@ -38,7 +38,7 @@
     "react-type-animation": "^3.2.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.4.5",
+    "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
     "@mui/x-charts": "^7.27.0",
     "@mui/x-data-grid-pro": "^7.27.0",

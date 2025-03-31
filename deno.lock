@@ -4,7 +4,7 @@
     "npm:@emotion/react@^11.14.0": "11.14.0_react@19.1.0",
     "npm:@emotion/styled@^11.14.0": "11.14.0_@emotion+react@11.14.0__react@19.1.0_react@19.1.0",
     "npm:@eslint/js@^9.13.0": "9.23.0",
-    "npm:@mui/icons-material@^6.4.5": "6.4.9_@mui+material@6.4.9__@emotion+react@11.14.0___react@19.1.0__@emotion+styled@11.14.0___@emotion+react@11.14.0____react@19.1.0___react@19.1.0__@types+react@19.0.12__react@19.1.0__react-dom@19.1.0___react@19.1.0_@types+react@19.0.12_react@19.1.0_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_react-dom@19.1.0__react@19.1.0",
+    "npm:@mui/icons-material@^7.0.1": "7.0.1_@mui+material@7.0.1__@emotion+react@11.14.0___react@19.1.0__@emotion+styled@11.14.0___@emotion+react@11.14.0____react@19.1.0___react@19.1.0__@types+react@19.0.12__react@19.1.0__react-dom@19.1.0___react@19.1.0_@types+react@19.0.12_react@19.1.0_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@mui/lab@^7.0.0-beta.10": "7.0.0-beta.10_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@mui+material@7.0.1__@emotion+react@11.14.0___react@19.1.0__@emotion+styled@11.14.0___@emotion+react@11.14.0____react@19.1.0___react@19.1.0__@types+react@19.0.12__react@19.1.0__react-dom@19.1.0___react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@mui/material@^7.0.1": "7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
     "npm:@mui/system@^6.4.7": "6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
@@ -478,17 +478,14 @@
         "@jridgewell/sourcemap-codec"
       ]
     },
-    "@mui/core-downloads-tracker@6.4.9": {
-      "integrity": "sha512-3UvsvOjqZJcokHKSzA1lskj2XMM/G5GBgge6ykwmAij2pGGxydGxAXirQlLaeoMwTKDS6BcrLqPZyPVwzri20A=="
-    },
     "@mui/core-downloads-tracker@7.0.1": {
       "integrity": "sha512-T5DNVnSD9pMbj4Jk/Uphz+yvj9dfpl2+EqsOuJtG12HxEihNG5pd3qzX5yM1Id4dDwKRvM3dPVcxyzavTFhJeA=="
     },
-    "@mui/icons-material@6.4.9_@mui+material@6.4.9__@emotion+react@11.14.0___react@19.1.0__@emotion+styled@11.14.0___@emotion+react@11.14.0____react@19.1.0___react@19.1.0__@types+react@19.0.12__react@19.1.0__react-dom@19.1.0___react@19.1.0_@types+react@19.0.12_react@19.1.0_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_react-dom@19.1.0__react@19.1.0": {
-      "integrity": "sha512-a8l63VIscBteJlh31R88aVgHelCcrhl3Rk0GnN8znTsGhcam9mFeo4Xlw+gLUYQP7mxVcVt3WP9XJkwXWZflnw==",
+    "@mui/icons-material@7.0.1_@mui+material@7.0.1__@emotion+react@11.14.0___react@19.1.0__@emotion+styled@11.14.0___@emotion+react@11.14.0____react@19.1.0___react@19.1.0__@types+react@19.0.12__react@19.1.0__react-dom@19.1.0___react@19.1.0_@types+react@19.0.12_react@19.1.0_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_react-dom@19.1.0__react@19.1.0": {
+      "integrity": "sha512-x8Em7LISFQ6s/KeZj6ZKwJHq2WttRNe9KJLWFa72eQx7B53s/TzMKOEjGKB/YyhOx+bqqSv1pMvK373M4Xf07A==",
       "dependencies": [
         "@babel/runtime",
-        "@mui/material@6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
+        "@mui/material",
         "@types/react",
         "react@19.1.0"
       ]
@@ -499,7 +496,7 @@
         "@babel/runtime",
         "@emotion/react",
         "@emotion/styled",
-        "@mui/material@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
+        "@mui/material",
         "@mui/system@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
         "@mui/types@7.4.0_@types+react@19.0.12",
         "@mui/utils@7.0.1_@types+react@19.0.12_react@19.1.0",
@@ -510,35 +507,13 @@
         "react-dom@19.1.0_react@19.1.0"
       ]
     },
-    "@mui/material@6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0": {
-      "integrity": "sha512-+5dExw9xUUFujIW889gB3qrfjeNo3YjYW7aWVZ6BlBIJnKpJ0jNcYZJpBUFoXt/FUV5Wy1V+/+XzR3Is2mXX2w==",
-      "dependencies": [
-        "@babel/runtime",
-        "@emotion/react",
-        "@emotion/styled",
-        "@mui/core-downloads-tracker@6.4.9",
-        "@mui/system@6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
-        "@mui/types@7.2.24_@types+react@19.0.12",
-        "@mui/utils@6.4.8_@types+react@19.0.12_react@19.1.0",
-        "@popperjs/core",
-        "@types/react",
-        "@types/react-transition-group",
-        "clsx",
-        "csstype",
-        "prop-types",
-        "react@19.1.0",
-        "react-dom@19.1.0_react@19.1.0",
-        "react-is@19.1.0",
-        "react-transition-group"
-      ]
-    },
     "@mui/material@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0": {
       "integrity": "sha512-tQwjIIsn/UUSCHoCIQVkANuLua67h7Ro9M9gIHoGWaFbJFuF6cSO4Oda2olDVqIs4SWG+PaDChuu6SngxsaoyQ==",
       "dependencies": [
         "@babel/runtime",
         "@emotion/react",
         "@emotion/styled",
-        "@mui/core-downloads-tracker@7.0.1",
+        "@mui/core-downloads-tracker",
         "@mui/system@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
         "@mui/types@7.4.0_@types+react@19.0.12",
         "@mui/utils@7.0.1_@types+react@19.0.12_react@19.1.0",
@@ -701,7 +676,7 @@
         "@babel/runtime",
         "@emotion/react",
         "@emotion/styled",
-        "@mui/material@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
+        "@mui/material",
         "@mui/system@6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
         "@mui/utils@7.0.1_@types+react@19.0.12_react@19.1.0",
         "@mui/x-charts-vendor",
@@ -720,7 +695,7 @@
         "@babel/runtime",
         "@emotion/react",
         "@emotion/styled",
-        "@mui/material@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
+        "@mui/material",
         "@mui/system@6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
         "@mui/utils@7.0.1_@types+react@19.0.12_react@19.1.0",
         "@mui/x-data-grid",
@@ -740,7 +715,7 @@
         "@babel/runtime",
         "@emotion/react",
         "@emotion/styled",
-        "@mui/material@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
+        "@mui/material",
         "@mui/system@6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
         "@mui/utils@7.0.1_@types+react@19.0.12_react@19.1.0",
         "@mui/x-internals",
@@ -758,7 +733,7 @@
         "@babel/runtime",
         "@emotion/react",
         "@emotion/styled",
-        "@mui/material@7.0.1_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0_react-dom@19.1.0__react@19.1.0",
+        "@mui/material",
         "@mui/system@6.4.9_@emotion+react@11.14.0__react@19.1.0_@emotion+styled@11.14.0__@emotion+react@11.14.0___react@19.1.0__react@19.1.0_@types+react@19.0.12_react@19.1.0",
         "@mui/utils@7.0.1_@types+react@19.0.12_react@19.1.0",
         "@mui/x-internals",
@@ -3347,7 +3322,7 @@
         "npm:@emotion/react@^11.14.0",
         "npm:@emotion/styled@^11.14.0",
         "npm:@eslint/js@^9.13.0",
-        "npm:@mui/icons-material@^6.4.5",
+        "npm:@mui/icons-material@^7.0.1",
         "npm:@mui/lab@^7.0.0-beta.10",
         "npm:@mui/material@^7.0.1",
         "npm:@mui/system@^6.4.7",
