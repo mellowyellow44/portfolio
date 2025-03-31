@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import muiLightTheme from '../../styles/mui/themes/lightTheme';
+import muiLightTheme from '../../styles/mui/themes/lightTheme.ts';
 
 interface ThemeState {
   palette: {
