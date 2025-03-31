@@ -400,7 +400,7 @@ const MouseEventsDashboard = () => {
       >
         <Grid container spacing={3}>
           {/* Header */}
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12, md: 12 }}>
             <Paper
               elevation={0}
               sx={{
@@ -470,9 +470,9 @@ const MouseEventsDashboard = () => {
           </Grid>
 
           {/* Statistics Cards */}
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12, md: 12 }}>
             <Grid container spacing={2}>
-              <Grid item xs={6} sm={3}>
+              <Grid size={{ xs: 6, sm: 3 }}>
                 <Card sx={{ height: '100%' }}>
                   <CardContent sx={{ p: 2 }}>
                     <Typography variant="overline" color="text.secondary">
@@ -484,7 +484,7 @@ const MouseEventsDashboard = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid size={{ xs: 6, sm: 3 }}>
                 <Card sx={{ height: '100%' }}>
                   <CardContent sx={{ p: 2 }}>
                     <Typography variant="overline" color="text.secondary">
@@ -496,7 +496,7 @@ const MouseEventsDashboard = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid size={{ xs: 6, sm: 3 }}>
                 <Card sx={{ height: '100%' }}>
                   <CardContent sx={{ p: 2 }}>
                     <Typography variant="overline" color="text.secondary">
@@ -508,7 +508,7 @@ const MouseEventsDashboard = () => {
                   </CardContent>
                 </Card>
               </Grid>
-              <Grid item xs={6} sm={3}>
+              <Grid size={{ xs: 6, sm: 3 }}>
                 <Card sx={{ height: '100%' }}>
                   <CardContent sx={{ p: 2 }}>
                     <Typography variant="overline" color="text.secondary">
@@ -524,7 +524,7 @@ const MouseEventsDashboard = () => {
           </Grid>
 
           {/* Tracking area */}
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper
               ref={trackingAreaRef}
               elevation={3}
@@ -608,7 +608,7 @@ const MouseEventsDashboard = () => {
           </Grid>
 
           {/* Last Click Info */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Box display="flex" alignItems="center" mb={2}>
@@ -628,7 +628,7 @@ const MouseEventsDashboard = () => {
                     }}
                   >
                     <Grid container spacing={2}>
-                      <Grid item xs={6}>
+                      <Grid size={6}>
                         <Typography variant="subtitle2" color="text.secondary">
                           X Position
                         </Typography>
@@ -636,7 +636,7 @@ const MouseEventsDashboard = () => {
                           {lastClick.x.toFixed(0)}px
                         </Typography>
                       </Grid>
-                      <Grid item xs={6}>
+                      <Grid size={{ xs: 6, sm: 6 }}>
                         <Typography variant="subtitle2" color="text.secondary">
                           Y Position
                         </Typography>
@@ -644,7 +644,7 @@ const MouseEventsDashboard = () => {
                           {lastClick.y.toFixed(0)}px
                         </Typography>
                       </Grid>
-                      <Grid item xs={12}>
+                      <Grid size={{ xs: 12 }}>
                         <Typography variant="subtitle2" color="text.secondary">
                           Time
                         </Typography>
@@ -681,7 +681,7 @@ const MouseEventsDashboard = () => {
           </Grid>
 
           {/* Event Distribution Pie Chart (New) */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card sx={{ height: '100%' }}>
               <CardContent>
                 <Box display="flex" alignItems="center" mb={2}>
@@ -763,7 +763,7 @@ const MouseEventsDashboard = () => {
           </Grid>
 
           {/* Event Counts Chart */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
                 <Box display="flex" alignItems="center" mb={2}>
@@ -818,7 +818,7 @@ const MouseEventsDashboard = () => {
           </Grid>
 
           {/* Click Timeline (New) */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
                 <Box display="flex" alignItems="center" mb={2}>
@@ -958,7 +958,7 @@ const MouseEventsDashboard = () => {
           </Grid>
 
           {/* Click Positions Scatter Chart */}
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Card>
               <CardContent>
                 <Box display="flex" alignItems="center" mb={2}>

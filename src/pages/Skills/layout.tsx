@@ -293,10 +293,12 @@ const SkillsPage: React.FC = () => {
                                         index: number,
                                     ) => (
                                         <Grid
-                                            item
-                                            xs={6}
-                                            sm={4}
-                                            md={3}
+                                        size={{
+                                            xs: 12, // Full width on small screens
+                                            sm: 6,  // Half width on medium screens
+                                            md: 4,  // One-third width on large screens
+                                            lg: 3,  // One-fourth width on extra-large screens
+                                        }}
                                             key={skill.id}
                                         >
                                             <motion.div

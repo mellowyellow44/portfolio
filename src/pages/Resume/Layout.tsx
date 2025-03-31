@@ -710,7 +710,7 @@ const ResumeBuilder: React.FC = () => {
         <Grid container spacing={2}>
           {/* Reduced spacing from 3 to 2 */}
           {/* Left: Controls */}
-          <Grid item xs={12} md={3}>
+          <Grid size={{ xs: 12, md: 4 }} >
             {/* Changed from md=4 to md=3 to give more space to preview */}
             <Paper elevation={3} sx={{ p: 2, height: "100%" }}>
               {/* Reduced padding */}
@@ -898,7 +898,7 @@ const ResumeBuilder: React.FC = () => {
           </Grid>
 
           {/* Right: Preview */}
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             <Paper
               elevation={3}
               sx={{
