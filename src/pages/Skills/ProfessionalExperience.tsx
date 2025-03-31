@@ -19,7 +19,7 @@ import WorkIcon from "@mui/icons-material/Work";
 import BusinessIcon from "@mui/icons-material/Business";
 import { alpha } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
-import { gradientText } from "./styles"; // Adjust the import path as necessary
+import { gradientText } from "../../styles/styles.ts"; // Adjust the import path as necessary
 import { SkillCardProps } from "./skillsData.tsx";
 
 const ProfessionalExperience = (

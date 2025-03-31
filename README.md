@@ -1,50 +1,133 @@
-# React + TypeScript + Vite
+# Personal Portfolio Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Overview
 
-Currently, two official plugins are available:
+This is a modern, responsive portfolio website built with cutting-edge web technologies, showcasing my skills, projects, and professional journey.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+### Core Technologies
+- **Runtime**: Deno
+- **Frontend**: React 19 (with TypeScript)
+- **Routing**: React Router v7
+- **State Management**: Redux Toolkit
+- **Styling**: 
+  - Tailwind CSS
+  - Material-UI
+  - Emotion
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Visualization Libraries
+- Recharts
+- D3.js
+- React-Vis
+- MUI X Charts
 
-- Configure the top-level `parserOptions` property like this:
+### Animation & Interaction
+- Framer Motion
+- React Type Animation
+- Intersection Observer
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Utility Libraries
+- Day.js
+- Math.js
+- Moment.js
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 📦 Key Dependencies
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- **Runtime**: Deno
+- **UI Framework**: 
+  - Material-UI (MUI)
+  - Tailwind CSS
+- **Charts & Data Visualization**: 
+  - Recharts
+  - D3.js
+  - MUI X Charts
+- **State Management**: 
+  - Redux Toolkit
+- **Routing**: 
+  - React Router
+- **Utilities**: 
+  - Framer Motion
+  - Day.js
+  - Math.js
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 🔧 Getting Started
+
+### Prerequisites
+- Deno (latest version recommended)
+- VSCode with Deno extension (optional but recommended)
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://your-portfolio-repo-url.git
+   cd portfolio
+   ```
+
+2. Verify Deno Installation
+   ```bash
+   deno --version
+   ```
+
+### Development Scripts
+
+- **Start Development Server**
+  ```bash
+  deno task dev
+  ```
+
+- **Build for Production**
+  ```bash
+  deno task build
+  ```
+
+- **Run Tests**
+  ```bash
+  deno test
+  ```
+
+- **Format Code**
+  ```bash
+  deno fmt
+  ```
+
+- **Lint Code**
+  ```bash
+  deno lint
+  ```
+
+## 🌟 Features
+
+- Deno Runtime
+- Responsive Design
+- Interactive Data Visualizations
+- Smooth Animations
+- Performance Optimized
+- Modern UI/UX
+- Typescript Support
+- Comprehensive Routing
+
+## 🚧 Performance Optimization
+
+- Leveraging Deno's native TypeScript support
+- Efficient module loading
+- React 19's new features
+- Code-splitting with React Router
+- Lazy loading of components
+- Efficient state management with Redux Toolkit
+
+## 🚀 Deployment
+
+Recommended platforms:
+- Deno Deploy
+- Cloudflare Workers
+- Vercel (with Deno adapter)
+
+## 📝 License
+
+MIT
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!

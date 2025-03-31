@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { gradientText } from './styles';
+import { gradientText } from '../../styles/styles.ts';
 import { SkillsData, skillsData } from './skillsData';
 
 import { SkillCardProps } from "./skillsData.tsx";

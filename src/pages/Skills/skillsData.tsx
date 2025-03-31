@@ -249,27 +249,27 @@ export const skillsData: SkillsData = {
             {
                 company: "Precedent",
                 years: "2+ years",
-                focus: "RTK Query implementation for legal document management",
+                focus: "Interactive dashboards for legal document management and insurance claims mediation applications",
             },
             {
                 company: "CSAA Insurance Group",
                 years: "4+ years",
-                focus: "Redux for multi-product insurance quoting platforms",
+                focus: "Data visualization for multi-product insurance quoting platforms, including charts and graphs for performance metrics",
             },
             {
                 company: "American Express",
                 years: "2+ years",
-                focus: "Financial data state management with strict protocols",
+                focus: "Financial dashboards with real-time data visualization, including performance metrics and transaction trends",
             },
             {
                 company: "Sierra Telecom",
                 years: "1+ year",
-                focus: "Real-time state management for IoT dashboards",
+                focus: "IoT monitoring dashboards with real-time data updates and geospatial visualization for device locations",
             },
             {
                 company: "Freelance",
                 years: "2+ years",
-                focus: "Custom data visualization solutions for various clients",
+                focus: "Custom data visualization solutions for various clients, including e-commerce sales dashboards and portfolio performance charts",
             }
         ],
         implementation: `Data visualization components in this portfolio demonstrate interactive charts and dashboards using D3.js and Highcharts. The implementation features responsive design, WebSocket integration for real-time updates, and custom visualization types for complex data representation.`,
@@ -331,17 +331,17 @@ export const skillsData: SkillsData = {
             {
                 company: "Precedent",
                 years: "2+ years",
-                focus: "RTK Query implementation for legal document management",
+                focus: "RTK Query for managing API calls and state in legal document management systems, including caching and synchronization of document data",
             },
             {
                 company: "CSAA Insurance Group",
                 years: "4+ years",
-                focus: "Redux for multi-product insurance quoting platforms",
+                focus: "Redux Toolkit for state management in multi-product insurance quoting platforms, including complex state normalization and middleware for side effects",
             },
             {
                 company: "American Express",
                 years: "2+ years",
-                focus: "Financial data state management with strict protocols",
+                focus: "Redux state management for financial dashboards."
             },
             {
                 company: "Sierra Telecom",

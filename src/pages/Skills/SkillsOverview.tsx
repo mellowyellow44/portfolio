@@ -17,7 +17,7 @@ import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import ViewFullSourceCode from "../../components/ViewFullSourceCode";
 import ExpertiseHeader from "./ExpertiseHeader";
-import { gradientText } from "./styles.ts";
+import { gradientText } from "../../styles/styles.ts";
 import {
   muiExpertiseHeaderProps,
   reactExpertiseHeaderProps,

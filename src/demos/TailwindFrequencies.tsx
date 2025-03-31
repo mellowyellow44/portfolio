@@ -86,7 +86,7 @@ const HarmonicVisualizer = () => {
   const [selectedChakra, setSelectedChakra] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [synth, setSynth] = useState(null);
-  const [visualizationMode, setVisualizationMode] = useState("spiral");
+  const [visualizationMode, setVisualizationMode] = useState("mandala");
   const [harmonics, setHarmonics] = useState([1, 1.5, 2, 2.5, 3]);
   const [animationSpeed, setAnimationSpeed] = useState(5);
   const animationRef = useRef(null);
@@ -501,7 +501,7 @@ const HarmonicVisualizer = () => {
               </div>
 
               <div className="flex gap-2">
-                <button
+                {/* <button
                   onClick={() => setVisualizationMode("spiral")}
                   className={`px-3 py-1 rounded ${
                     visualizationMode === "spiral"
@@ -510,7 +510,7 @@ const HarmonicVisualizer = () => {
                   }`}
                 >
                   Spiral
-                </button>
+                </button> */}
                 <button
                   onClick={() => setVisualizationMode("mandala")}
                   className={`px-3 py-1 rounded ${

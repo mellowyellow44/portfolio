@@ -8,7 +8,7 @@ import {
     Typography,
 } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
-import { gradientText } from "./styles";
+import { gradientText } from "../../styles/styles.ts";
 import { SkillCardProps } from "./skillsData.tsx";
 
 const ShowCaseSolutions = ( { currentSkill }: { currentSkill: SkillCardProps } ) => {

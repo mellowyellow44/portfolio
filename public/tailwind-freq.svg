@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#111" />
+      <stop offset="100%" stop-color="#000" />
+    </radialGradient>
+    
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <linearGradient id="chakraGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF0000" />
+      <stop offset="100%" stop-color="#FF7F00" />
+    </linearGradient>
+    
+    <linearGradient id="chakraGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFF00" />
+      <stop offset="100%" stop-color="#00FF00" />
+    </linearGradient>
+    
+    <linearGradient id="chakraGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0000FF" />
+      <stop offset="100%" stop-color="#4B0082" />
+    </linearGradient>
+    
+    <linearGradient id="chakraGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9400D3" />
+      <stop offset="100%" stop-color="#FF0000" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgGrad)" rx="20" ry="20" />
+  
+  <!-- Center mandala -->
+  <g transform="translate(200, 200)">
+    <!-- Chakra circles -->
+    <circle r="120" fill="none" stroke="#FF0000" stroke-width="1.5" stroke-opacity="0.2" filter="url(#glow)">
+      <animate attributeName="r" values="120;125;120" dur="4s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" values="0.2;0.3;0.2" dur="4s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle r="100" fill="none" stroke="#FF7F00" stroke-width="1.5" stroke-opacity="0.2" filter="url(#glow)">
+      <animate attributeName="r" values="100;105;100" dur="3.5s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" values="0.2;0.3;0.2" dur="3.5s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle r="80" fill="none" stroke="#FFFF00" stroke-width="1.5" stroke-opacity="0.2" filter="url(#glow)">
+      <animate attributeName="r" values="80;85;80" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" values="0.2;0.3;0.2" dur="3s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle r="60" fill="none" stroke="#00FF00" stroke-width="1.5" stroke-opacity="0.2" filter="url(#glow)">
+      <animate attributeName="r" values="60;65;60" dur="3.7s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" values="0.2;0.3;0.2" dur="3.7s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle r="40" fill="none" stroke="#0000FF" stroke-width="1.5" stroke-opacity="0.2" filter="url(#glow)">
+      <animate attributeName="r" values="40;45;40" dur="4.2s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" values="0.2;0.3;0.2" dur="4.2s" repeatCount="indefinite" />
+    </circle>
+    
+    <circle r="20" fill="none" stroke="#4B0082" stroke-width="1.5" stroke-opacity="0.2" filter="url(#glow)">
+      <animate attributeName="r" values="20;25;20" dur="4.5s" repeatCount="indefinite" />
+      <animate attributeName="stroke-opacity" values="0.2;0.3;0.2" dur="4.5s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Spirals -->
+    <path d="M0,0 Q30,30 60,0 T120,0" fill="none" stroke="url(#chakraGrad1)" stroke-width="2" filter="url(#glow)">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite" />
+    </path>
+    
+    <path d="M0,0 Q25,-25 50,0 T100,0" fill="none" stroke="url(#chakraGrad2)" stroke-width="2" filter="url(#glow)">
+      <animateTransform attributeName="transform" type="rotate" from="72" to="432" dur="15s" repeatCount="indefinite" />
+    </path>
+    
+    <path d="M0,0 Q20,20 40,0 T80,0" fill="none" stroke="url(#chakraGrad3)" stroke-width="2" filter="url(#glow)">
+      <animateTransform attributeName="transform" type="rotate" from="144" to="504" dur="25s" repeatCount="indefinite" />
+    </path>
+    
+    <path d="M0,0 Q15,-15 30,0 T60,0" fill="none" stroke="url(#chakraGrad4)" stroke-width="2" filter="url(#glow)">
+      <animateTransform attributeName="transform" type="rotate" from="216" to="576" dur="18s" repeatCount="indefinite" />
+    </path>
+    
+    <!-- Frequency wave circles -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="30s" repeatCount="indefinite" />
+      
+      <!-- 396 Hz (Root) -->
+      <path d="M0,0 Q20,15 40,0 T80,0 T120,0 T160,0" fill="none" stroke="#FF0000" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" transform="translate(0, 0)">
+        <animate attributeName="d" values="M0,0 Q20,15 40,0 T80,0 T120,0 T160,0;M0,0 Q20,20 40,0 T80,0 T120,0 T160,0;M0,0 Q20,15 40,0 T80,0 T120,0 T160,0" dur="3.96s" repeatCount="indefinite" />
+      </path>
+      
+      <!-- 417 Hz (Sacral) -->
+      <path d="M0,0 Q15,20 30,0 T60,0 T90,0 T120,0" fill="none" stroke="#FF7F00" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" transform="rotate(51.4) translate(0, 0)">
+        <animate attributeName="d" values="M0,0 Q15,20 30,0 T60,0 T90,0 T120,0;M0,0 Q15,25 30,0 T60,0 T90,0 T120,0;M0,0 Q15,20 30,0 T60,0 T90,0 T120,0" dur="4.17s" repeatCount="indefinite" />
+      </path>
+      
+      <!-- 528 Hz (Solar Plexus) -->
+      <path d="M0,0 Q12,18 24,0 T48,0 T72,0 T96,0" fill="none" stroke="#FFFF00" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" transform="rotate(102.8) translate(0, 0)">
+        <animate attributeName="d" values="M0,0 Q12,18 24,0 T48,0 T72,0 T96,0;M0,0 Q12,23 24,0 T48,0 T72,0 T96,0;M0,0 Q12,18 24,0 T48,0 T72,0 T96,0" dur="5.28s" repeatCount="indefinite" />
+      </path>
+      
+      <!-- 639 Hz (Heart) -->
+      <path d="M0,0 Q10,15 20,0 T40,0 T60,0 T80,0" fill="none" stroke="#00FF00" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" transform="rotate(154.2) translate(0, 0)">
+        <animate attributeName="d" values="M0,0 Q10,15 20,0 T40,0 T60,0 T80,0;M0,0 Q10,20 20,0 T40,0 T60,0 T80,0;M0,0 Q10,15 20,0 T40,0 T60,0 T80,0" dur="6.39s" repeatCount="indefinite" />
+      </path>
+      
+      <!-- 741 Hz (Throat) -->
+      <path d="M0,0 Q8,12 16,0 T32,0 T48,0 T64,0" fill="none" stroke="#0000FF" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" transform="rotate(205.6) translate(0, 0)">
+        <animate attributeName="d" values="M0,0 Q8,12 16,0 T32,0 T48,0 T64,0;M0,0 Q8,17 16,0 T32,0 T48,0 T64,0;M0,0 Q8,12 16,0 T32,0 T48,0 T64,0" dur="7.41s" repeatCount="indefinite" />
+      </path>
+      
+      <!-- 852 Hz (Third Eye) -->
+      <path d="M0,0 Q6,10 12,0 T24,0 T36,0 T48,0" fill="none" stroke="#4B0082" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" transform="rotate(257) translate(0, 0)">
+        <animate attributeName="d" values="M0,0 Q6,10 12,0 T24,0 T36,0 T48,0;M0,0 Q6,15 12,0 T24,0 T36,0 T48,0;M0,0 Q6,10 12,0 T24,0 T36,0 T48,0" dur="8.52s" repeatCount="indefinite" />
+      </path>
+      
+      <!-- 963 Hz (Crown) -->
+      <path d="M0,0 Q5,8 10,0 T20,0 T30,0 T40,0" fill="none" stroke="#9400D3" stroke-width="1.5" stroke-opacity="0.6" filter="url(#glow)" transform="rotate(308.4) translate(0, 0)">
+        <animate attributeName="d" values="M0,0 Q5,8 10,0 T20,0 T30,0 T40,0;M0,0 Q5,13 10,0 T20,0 T30,0 T40,0;M0,0 Q5,8 10,0 T20,0 T30,0 T40,0" dur="9.63s" repeatCount="indefinite" />
+      </path>
+    </g>
+    
+    <!-- Center point -->
+    <circle r="8" fill="#FFFFFF" opacity="0.8" filter="url(#glow)">
+      <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Sound wave representation at bottom -->
+  <g transform="translate(200, 350)">
+    <path d="M-150,0 Q-120,-20 -90,0 T-30,0 T30,0 T90,0 T150,0" fill="none" stroke="white" stroke-width="2" opacity="0.6" filter="url(#glow)">
+      <animate attributeName="d" values="M-150,0 Q-120,-20 -90,0 T-30,0 T30,0 T90,0 T150,0;M-150,0 Q-120,-30 -90,0 T-30,0 T30,0 T90,0 T150,0;M-150,0 Q-120,-20 -90,0 T-30,0 T30,0 T90,0 T150,0" dur="4s" repeatCount="indefinite" />
+    </path>
+  </g>
+</svg>

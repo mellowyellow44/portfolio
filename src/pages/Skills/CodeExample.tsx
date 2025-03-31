@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
-import { gradientText } from "./styles";
+import { gradientText } from "../../styles/styles.ts";
 import { SkillCardProps } from "./skillsData.tsx";
 import { githubRepoLink } from "../../constants/links";
 import CodeBlock from "../../components/CodeBlock";

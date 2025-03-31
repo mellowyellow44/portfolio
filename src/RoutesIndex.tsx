@@ -12,6 +12,7 @@ import NavBar from "./components/NavBar.tsx";
 const Home = lazy(() => import("./pages/Home/layout.tsx"));
 const Skills = lazy(() => import("./pages/Skills/Layout.tsx"));
 const Resume = lazy(() => import("./pages/Resume/Layout.tsx"));
+const Demos = lazy(() => import("./demos/layout.tsx"));
 const SkillsOverView = lazy(() => import("./pages/Skills/SkillsOverview.tsx"));
 const TailWindFrequencies = lazy(() =>
   import("./demos/TailwindFrequencies.tsx")
@@ -68,6 +69,12 @@ const RoutesIndex: React.FC = () => {
               <Route
                 path="/resume"
                 element={<Resume />}
+              />
+
+            
+              <Route
+                path="demos"
+                element={<Demos />}
               />
 
               <Route

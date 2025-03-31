@@ -32,6 +32,7 @@ import {
 } from "../../redux/slices/skills";
 import { JSX } from "react/jsx-runtime";
 import PageHeader from "../../components/PageHeader";
+import TechBadge from "../../components/TechBadge"; //
 
 // Define skill categories for filtering
 const categories = [
@@ -58,6 +59,14 @@ const categoryMap = {
     security: ["security", "testing"],
     design: ["mui", "tailwind", "datavis"],
 };
+
+const technologies = [
+    { name: "React", color: "#61DAFB" },
+    { name: "TypeScript", color: "#3178C6" },
+    { name: "Material UI", color: "#0081CB" },
+    { name: "Redux", color: "#764ABC" },
+    { name: "Framer Motion", color: "#FF4D4D" },
+];
 
 const SkillsPage: React.FC = () => {
     const theme = useTheme();
@@ -132,194 +141,206 @@ const SkillsPage: React.FC = () => {
     };
 
     return (
-        <Box
-            sx={{
-                py: 4,
-                minHeight: "100vh",
-                background: theme.palette.mode === "light"
-                    ? "linear-gradient(120deg, #f0f0f0 0%, #ffffff 100%)"
-                    : "linear-gradient(120deg, #1a1a1a 0%, #2d2d2d 100%)",
-            }}
-        >
-            <Container maxWidth="lg">
-                <Box sx={{ mb: 6, textAlign: "center" }}>
+        <>
+            <TechBadge
+                technologies={technologies}
+                position="header"
+            />
+            <Box
+                sx={{
+                    py: 4,
+                    minHeight: "100vh",
+                    background: theme.palette.mode === "light"
+                        ? "linear-gradient(120deg, #f0f0f0 0%, #ffffff 100%)"
+                        : "linear-gradient(120deg, #1a1a1a 0%, #2d2d2d 100%)",
+                }}
+            >
+                <Container maxWidth="lg">
+                    <Box sx={{ mb: 6, textAlign: "center" }}>
+                        <PageHeader
+                            title="Technical Skills"
+                            subtitle="A showcase of my expertise across various technologies and frameworks."
+                        />
 
-                    <PageHeader
-                        title="Technical Skills"
-                        subtitle="A showcase of my expertise across various technologies and frameworks."
-                    />
-                    
-                    {/* Search box with animation */}
-                    <Paper
-                        elevation={3}
-                        sx={{
-                            maxWidth: 600,
-                            mx: "auto",
-                            mt: 4,
-                            mb: 3,
-                            p: 0.5,
-                            display: "flex",
-                            alignItems: "center",
-                            borderRadius: 3,
-                            overflow: "hidden",
-                            transition: "all 0.3s ease-in-out",
-                            border: isTyping
-                                ? `2px solid ${theme.palette.primary.main}`
-                                : `2px solid transparent`,
-                            boxShadow: isTyping
-                                ? `0 0 10px ${theme.palette.primary.main}40`
-                                : undefined,
-                        }}
-                    >
-                        <TextField
-                            fullWidth
-                            placeholder="Search skills, technologies, or keywords..."
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            variant="standard"
+                        {/* Search box with animation */}
+                        <Paper
+                            elevation={3}
                             sx={{
-                                px: 2,
-                                "& .MuiInput-underline:before": {
-                                    borderBottom: "none",
-                                },
-                                "& .MuiInput-underline:after": {
-                                    borderBottom: "none",
-                                },
-                                "& .MuiInput-underline:hover:not(.Mui-disabled):before":
-                                    {
+                                maxWidth: 600,
+                                mx: "auto",
+                                mt: 4,
+                                mb: 3,
+                                p: 0.5,
+                                display: "flex",
+                                alignItems: "center",
+                                borderRadius: 3,
+                                overflow: "hidden",
+                                transition: "all 0.3s ease-in-out",
+                                border: isTyping
+                                    ? `2px solid ${theme.palette.primary.main}`
+                                    : `2px solid transparent`,
+                                boxShadow: isTyping
+                                    ? `0 0 10px ${theme.palette.primary.main}40`
+                                    : undefined,
+                            }}
+                        >
+                            <TextField
+                                fullWidth
+                                placeholder="Search skills, technologies, or keywords..."
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                variant="standard"
+                                sx={{
+                                    px: 2,
+                                    "& .MuiInput-underline:before": {
                                         borderBottom: "none",
                                     },
-                            }}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon color="primary" />
-                                    </InputAdornment>
-                                ),
-                                endAdornment: searchTerm && (
-                                    <InputAdornment position="end">
-                                        <Fade in={Boolean(searchTerm)}>
-                                            <IconButton
-                                                edge="end"
-                                                onClick={handleClearSearch}
-                                                size="small"
-                                            >
-                                                <CloseIcon fontSize="small" />
-                                            </IconButton>
-                                        </Fade>
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Paper>
-
-                    {/* Category filter chips */}
-                    <Stack
-                        direction="row"
-                        spacing={1.5}
-                        justifyContent="center"
-                        sx={{ mb: 4, mt: 2, flexWrap: "wrap", gap: 1 }}
-                    >
-                        {categories.map((category) => (
-                            <Chip
-                                key={category.name}
-                                label={category.name}
-                                icon={category.icon}
-                                onClick={() =>
-                                    handleCategoryClick(category.key)}
-                                color={selectedCategory === category.key
-                                    ? "primary"
-                                    : "default"}
-                                variant={selectedCategory === category.key
-                                    ? "filled"
-                                    : "outlined"}
-                                sx={{
-                                    px: 1,
-                                    fontWeight:
-                                        selectedCategory === category.key
-                                            ? "bold"
-                                            : "normal",
-                                    transition: "all 0.2s ease",
-                                    "&:hover": {
-                                        transform: "translateY(-2px)",
-                                        boxShadow: 2,
+                                    "& .MuiInput-underline:after": {
+                                        borderBottom: "none",
                                     },
+                                    "& .MuiInput-underline:hover:not(.Mui-disabled):before":
+                                        {
+                                            borderBottom: "none",
+                                        },
+                                }}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon color="primary" />
+                                        </InputAdornment>
+                                    ),
+                                    endAdornment: searchTerm && (
+                                        <InputAdornment position="end">
+                                            <Fade in={Boolean(searchTerm)}>
+                                                <IconButton
+                                                    edge="end"
+                                                    onClick={handleClearSearch}
+                                                    size="small"
+                                                >
+                                                    <CloseIcon fontSize="small" />
+                                                </IconButton>
+                                            </Fade>
+                                        </InputAdornment>
+                                    ),
                                 }}
                             />
-                        ))}
-                    </Stack>
+                        </Paper>
 
-                    {/* Results count */}
-                    <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ mb: 3 }}
-                    >
-                        {filteredSkills.length ===
-                                Object.values(skillsData).length
-                            ? "Showing all skills"
-                            : `Showing ${filteredSkills.length} of ${
-                                Object.values(skillsData).length
-                            } skills`}
-                    </Typography>
-                </Box>
-
-                {/* Skill cards grid with staggered animation */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <Grid container spacing={3}>
-                        {filteredSkills.length > 0
-                            ? (
-                                filteredSkills.map((skill: JSX.IntrinsicAttributes & SkillCardProps, index: number) => (
-                                    <Grid
-                                        item
-                                        xs={6}
-                                        sm={4}
-                                        md={3}
-                                        key={skill.id}
-                                    >
-                                        <motion.div
-                                            variants={childVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            transition={{ delay: index * 0.05 }}
-                                        >
-                                            <SkillCard {...skill} />
-                                        </motion.div>
-                                    </Grid>
-                                ))
-                            )
-                            : (
-                                <Box
+                        {/* Category filter chips */}
+                        <Stack
+                            direction="row"
+                            spacing={1.5}
+                            justifyContent="center"
+                            sx={{ mb: 4, mt: 2, flexWrap: "wrap", gap: 1 }}
+                        >
+                            {categories.map((category) => (
+                                <Chip
+                                    key={category.name}
+                                    label={category.name}
+                                    icon={category.icon}
+                                    onClick={() =>
+                                        handleCategoryClick(category.key)}
+                                    color={selectedCategory === category.key
+                                        ? "primary"
+                                        : "default"}
+                                    variant={selectedCategory === category.key
+                                        ? "filled"
+                                        : "outlined"}
                                     sx={{
-                                        width: "100%",
-                                        textAlign: "center",
-                                        py: 5,
+                                        px: 1,
+                                        fontWeight:
+                                            selectedCategory === category.key
+                                                ? "bold"
+                                                : "normal",
+                                        transition: "all 0.2s ease",
+                                        "&:hover": {
+                                            transform: "translateY(-2px)",
+                                            boxShadow: 2,
+                                        },
                                     }}
-                                >
-                                    <Typography
-                                        variant="h6"
-                                        color="text.secondary"
+                                />
+                            ))}
+                        </Stack>
+
+                        {/* Results count */}
+                        <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ mb: 3 }}
+                        >
+                            {filteredSkills.length ===
+                                    Object.values(skillsData).length
+                                ? "Showing all skills"
+                                : `Showing ${filteredSkills.length} of ${
+                                    Object.values(skillsData).length
+                                } skills`}
+                        </Typography>
+                    </Box>
+
+                    {/* Skill cards grid with staggered animation */}
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <Grid container spacing={3}>
+                            {filteredSkills.length > 0
+                                ? (
+                                    filteredSkills.map((
+                                        skill:
+                                            & JSX.IntrinsicAttributes
+                                            & SkillCardProps,
+                                        index: number,
+                                    ) => (
+                                        <Grid
+                                            item
+                                            xs={6}
+                                            sm={4}
+                                            md={3}
+                                            key={skill.id}
+                                        >
+                                            <motion.div
+                                                variants={childVariants}
+                                                initial="hidden"
+                                                animate="visible"
+                                                transition={{
+                                                    delay: index * 0.05,
+                                                }}
+                                            >
+                                                <SkillCard {...skill} />
+                                            </motion.div>
+                                        </Grid>
+                                    ))
+                                )
+                                : (
+                                    <Box
+                                        sx={{
+                                            width: "100%",
+                                            textAlign: "center",
+                                            py: 5,
+                                        }}
                                     >
-                                        No skills match your search
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary"
-                                        sx={{ mt: 1 }}
-                                    >
-                                        Try adjusting your search terms or
-                                        category filters
-                                    </Typography>
-                                </Box>
-                            )}
-                    </Grid>
-                </motion.div>
-            </Container>
-        </Box>
+                                        <Typography
+                                            variant="h6"
+                                            color="text.secondary"
+                                        >
+                                            No skills match your search
+                                        </Typography>
+                                        <Typography
+                                            variant="body2"
+                                            color="text.secondary"
+                                            sx={{ mt: 1 }}
+                                        >
+                                            Try adjusting your search terms or
+                                            category filters
+                                        </Typography>
+                                    </Box>
+                                )}
+                        </Grid>
+                    </motion.div>
+                </Container>
+            </Box>
+        </>
     );
 };
 
