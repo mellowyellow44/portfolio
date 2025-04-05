@@ -1,4 +1,4 @@
-// server.ts
+// main.ts
 import { Application, Router } from "@oak/oak";
 import { oakCors } from "@tajpouria/cors";
 
@@ -194,7 +194,10 @@ app.addEventListener("error", (evt) => {
 });
 
 // CORS middleware
-app.use(oakCors());
+app.use(oakCors({
+  origin: /^https:\/\/(.*\.)?mellow-yellow-portfolio-9a6mk551hk1d\.deno\.dev$/,
+  credentials: true
+}));
 
 // API routes
 app.use(router.routes());
