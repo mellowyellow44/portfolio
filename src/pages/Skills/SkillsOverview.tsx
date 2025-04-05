@@ -15,18 +15,18 @@ import WorkIcon from "@mui/icons-material/Work";
 import CodeIcon from "@mui/icons-material/Code";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import ConstructionIcon from "@mui/icons-material/Construction";
-import ViewFullSourceCode from "../../components/ViewFullSourceCode";
-import ExpertiseHeader from "./ExpertiseHeader";
+import ViewFullSourceCode from "../../components/ViewFullSourceCode.tsx";
+import ExpertiseHeader from "./ExpertiseHeader.tsx";
 import { gradientText } from "../../styles/styles.ts";
 import {
   muiExpertiseHeaderProps,
   reactExpertiseHeaderProps,
-} from "./ExpertiseProps";
-import { githubRepoLink } from "../../constants/links";
-import CodeBlock from "../../components/CodeBlock";
-import TabPanel from "../../components/TabPanel";
-import { SkillsData, skillsData } from "./skillsData";
-import ShowCaseSolutions from "./ShowCaseSolutions";
+} from "./ExpertiseProps.tsx";
+import { githubRepoLink } from "../../constants/links.ts";
+import CodeBlock from "../../components/CodeBlock.tsx";
+import TabPanel from "../../components/TabPanel.tsx";
+import { SkillsData, skillsData } from "./skillsData.tsx";
+import ShowCaseSolutions from "./ShowCaseSolutions.tsx";
 import ProfessionalExperience from "./ProfessionalExperience.tsx";
 import SkillDemo from "./SkillDemo.tsx";
 

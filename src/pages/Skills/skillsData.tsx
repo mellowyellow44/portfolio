@@ -1,8 +1,9 @@
+import React from "react";
 import { reactSnippet } from "../../codesnippets/reactSnippet.ts";
 import { themeCodeSnippet } from "../../codesnippets/mui.ts";
 import { typescriptCodeSnippet } from "../../codesnippets/typescript.ts";
-
 import RechartsDemo from "../../demos/RechartsMouseEventDataViz.tsx";
+import ChatComponent from "../../demos/Chat.tsx"; // <-- Import the ChatComponent for demo
 
 export interface SkillCardProps {
     id: string;
@@ -553,7 +554,8 @@ export const skillsData: SkillsData = {
                 focus: "Building secure microservices with TypeScript and Deno",
             },
         ],
-        implementation: `This portfolio demonstrates Deno's capabilities through secure API endpoints with explicit permission handling and modern JavaScript features. The implementation highlights Deno's built-in TypeScript support, standardized module system, and security-first approach to web development.`,
+        implementation: `This portfolio demonstrates Deno's capabilities through a real-time chat application that leverages Deno's native WebSocket support and Oak framework. The implementation showcases Deno's security-first approach with explicit permissions, TypeScript integration, and modern JavaScript features. The chat server handles real-time message broadcasting, connection management, and user presence tracking while maintaining clean separation of concerns and error handling.`,
+        demo: () => <ChatComponent />
     },
 
     // ========================
@@ -1109,6 +1111,16 @@ export const skillsData: SkillsData = {
                 desc: "Designing WebSocket systems for high-concurrency environments",
                 tags: ["scalable", "architecture", "concurrency"],
             },
+            {
+                name: "Native WebSockets",
+                desc: "Working directly with browser WebSocket API for optimal performance",
+                tags: ["native", "api", "performance"],
+            },
+            {
+                name: "Real-time Chat",
+                desc: "Multi-user chat applications with typing indicators and presence detection",
+                tags: ["chat", "indicators", "presence"],
+            },
         ],
         experience: [
             {
@@ -1122,8 +1134,15 @@ export const skillsData: SkillsData = {
                 focus:
                     "Building interactive dashboard applications with live updates",
             },
+            {
+                company: "Portfolio Projects",
+                years: "Current",
+                focus:
+                    "Real-time chat applications with native WebSockets and Deno",
+            },
         ],
-        implementation: `WebSocket integration in this portfolio provides real-time data updates for interactive components and live dashboards. The implementation demonstrates secure connection handling, efficient message serialization, and graceful reconnection strategies for reliable real-time communication.`,
+        implementation: `This portfolio showcases WebSocket implementation through a fully functional real-time chat application using Deno's native WebSocket support. The application demonstrates bidirectional communication with features including user presence detection, typing indicators, and message broadcasting. The implementation includes proper connection management with automatic reconnection, error handling, and efficient message serialization for optimal performance. Try opening multiple chat windows to see the WebSocket communication in action.`,
+        demo: () => <ChatComponent />
     },
 
     // Micro-Frontend Architecture

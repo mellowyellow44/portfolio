@@ -4,10 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "deno task dev:api & deno task dev:vite",
+    "dev:api": "deno run --allow-env --allow-net --allow-read api/main.ts",
+    "dev:vite": "deno run -A npm:vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "deno task build && deno task dev:api"
   },
   "dependencies": {
     "@mui/lab": "^7.0.0-beta.10",
@@ -49,6 +52,7 @@
     "@types/jest": "^27.5.2",
     "dotenv": "^16.4.7",
     "recharts": "^2.15.1",
+    "socket.io-client": "^4.8.1",
     "tailwindcss": "^4.0.15",
     "tone": "^15.0.4",
     "ts-node": "^10.9.2"

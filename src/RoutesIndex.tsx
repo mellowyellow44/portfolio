@@ -20,6 +20,9 @@ const TailWindFrequencies = lazy(() =>
 const RechartsMouseEventDataViz = lazy(() =>
   import("./demos/RechartsMouseEventDataViz.tsx")
 );
+const ChatDemo = lazy(() =>
+  import("./demos/Chat.tsx")
+);
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -85,6 +88,11 @@ const RoutesIndex: React.FC = () => {
               <Route
                 path="demos/recharts-mouse-event-data-viz"
                 element={<RechartsMouseEventDataViz />}
+              />
+
+              <Route
+                path="demos/chat"
+                element={<ChatDemo />}
               />
 
               <Route

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import TechBadge from "../components/TechBadge"; // Adjust path as needed
+import TechBadge from "../components/TechBadge.tsx"; 
 
 interface DemoInfo {
   id: string;
@@ -19,12 +19,21 @@ const DemosPage: React.FC = () => {
   // Demo data
   const demos: DemoInfo[] = [
     {
+      id: "realtime-chat",
+      title: "Real-time Chat Application",
+      description:
+        "A fully-functional real-time chat application built with native WebSockets and React. Features include real-time messaging, typing indicators, user online status, and auto-reconnection. Try opening multiple windows to chat with yourself and experience the real-time communication capabilities. This demo showcases advanced state management, WebSocket communication, and responsive UI design.",
+      tags: ["websockets", "real-time", "react", "tailwind-css", "typescript", "deno", "chat"],
+      path: "/demos/chat",
+      image: "/chat.svg", // You'll need to create this image or use a placeholder
+    },
+    {
       id: "tailwind-frequencies",
       title: "Tailwind CSS Frequencies",
       description:
         "This visualization application renders harmonic frequencies and chakra energy using D3.js for SVG animation and Tone.js for audio synthesis. It features interactive visualizations that respond to frequency changes in either spiral or mandala patterns, with customizable parameters including animation speed, base frequency, and harmonic ratios. The UI is built with React and styled using Tailwind CSS, creating a responsive interface that allows users to select chakras, apply sacred geometry ratios, and toggle sound playback.",
-        tags: ["d3.js", "tone.js", "data-visualization", "react", "tailwind-css", "audio", "interactive"],
-        path: "/demos/tailwind-frequencies",
+      tags: ["d3.js", "tone.js", "data-visualization", "react", "tailwind-css", "audio", "interactive"],
+      path: "/demos/tailwind-frequencies",
       image: "/tailwind-freq.svg",
     },
     {
@@ -173,7 +182,7 @@ const DemosPage: React.FC = () => {
                   placeholder="Search demos..."
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e:any) => setSearchQuery(e.target.value)}
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg
@@ -232,7 +241,7 @@ const DemoCard: React.FC<{ demo: DemoInfo }> = ({ demo }) => {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
       }}
-      className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+      className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -253,7 +262,7 @@ const DemoCard: React.FC<{ demo: DemoInfo }> = ({ demo }) => {
         </div>
       </div>
 
-      <div className="p-5">
+      <div className="p-5 flex-1 flex flex-col">
         <p className="text-gray-600 dark:text-gray-300 mb-4">
           {demo.description}
         </p>
@@ -268,25 +277,27 @@ const DemoCard: React.FC<{ demo: DemoInfo }> = ({ demo }) => {
             </span>
           ))}
         </div>
-
-        <Link
-          to={demo.path}
-          className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300"
-        >
-          <span>View Demo</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 ml-2"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+        
+        <div className="mt-auto pt-4">
+          <Link
+            to={demo.path}
+            className="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors duration-300"
           >
-            <path
-              fillRule="evenodd"
-              d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </Link>
+            <span>View Demo</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 ml-2"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
+        </div>
       </div>
     </motion.div>
   );
