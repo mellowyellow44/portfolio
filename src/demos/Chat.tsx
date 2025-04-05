@@ -20,15 +20,19 @@ const ChatComponent = () => {
   const wsRef = useRef<WebSocket | null>(null);
 
   // Determine WebSocket URL based on environment
-  const getWebSocketUrl = () => {
-    // For local development
-    if (window.location.hostname === 'localhost') {
-      return 'ws://localhost:8000/ws';
-    }
-    
-    // For production - use secure WebSocket with current host
+  const getWebSocketUrls = () => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    return `${protocol}//${window.location.host}/ws`;
+    const host = window.location.host;
+
+    // Paths to try in order
+    const paths = [
+      `/ws`,
+      `/api/ws`,
+      `/demos/chat/ws`,
+      `/demos/ws`
+    ];
+
+    return paths.map(path => `${protocol}//${host}${path}`);
   };
 
   // Check if this is a pop-up window
@@ -37,60 +41,81 @@ const ChatComponent = () => {
   // Connect to the WebSocket server when the component mounts
   useEffect(() => {
     const connectWebSocket = () => {
-      const wsUrl = getWebSocketUrl();
-      console.log(`Attempting to connect to WebSocket: ${wsUrl}`);
-
-      const ws = new WebSocket(wsUrl);
+      const wsUrls = getWebSocketUrls();
       
-      ws.onopen = () => {
-        console.log("WebSocket connection established successfully");
-        setIsConnected(true);
-        setConnectionError("");
-      };
-      
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          console.log("Received WebSocket message:", data);
-          
-          if (data.type === "message") {
-            setMessages((prevMessages) => [...prevMessages, data.data]);
-          } else if (data.type === "users_online") {
-            setUsersOnline(data.data);
-          } else if (data.type === "typing") {
-            setTypingUser(data.data);
-            setIsTyping(true);
-            // Clear the typing indicator after 2 seconds
-            setTimeout(() => {
-              setIsTyping(false);
-            }, 2000);
-          }
-        } catch (parseError) {
-          console.error("Error parsing WebSocket message:", parseError);
+      const attemptConnection = (urls: string[]) => {
+        if (urls.length === 0) {
+          setConnectionError("Could not establish WebSocket connection");
+          return;
         }
-      };
-      
-      ws.onclose = (event) => {
-        console.log("WebSocket connection closed", {
-          code: event.code,
-          reason: event.reason,
-          wasClean: event.wasClean
-        });
-        setIsConnected(false);
+
+        const wsUrl = urls[0];
+        console.log(`Attempting to connect to WebSocket: ${wsUrl}`);
+
+        const ws = new WebSocket(wsUrl);
         
-        // Try to reconnect after a delay
-        setTimeout(connectWebSocket, 3000);
-      };
-      
-      ws.onerror = (error) => {
-        console.error("WebSocket error:", error);
-        setConnectionError("WebSocket connection error");
+        ws.onopen = () => {
+          console.log("WebSocket connection established successfully");
+          setIsConnected(true);
+          setConnectionError("");
+          wsRef.current = ws;
+        };
         
-        // Try to reconnect after a delay
-        setTimeout(connectWebSocket, 3000);
+        ws.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            console.log("Received WebSocket message:", data);
+            
+            if (data.type === "message") {
+              setMessages((prevMessages) => [...prevMessages, data.data]);
+            } else if (data.type === "users_online") {
+              setUsersOnline(data.data);
+            } else if (data.type === "typing") {
+              setTypingUser(data.data);
+              setIsTyping(true);
+              // Clear the typing indicator after 2 seconds
+              setTimeout(() => {
+                setIsTyping(false);
+              }, 2000);
+            }
+          } catch (parseError) {
+            console.error("Error parsing WebSocket message:", parseError);
+          }
+        };
+        
+        ws.onclose = (event) => {
+          console.log("WebSocket connection closed", {
+            code: event.code,
+            reason: event.reason,
+            wasClean: event.wasClean
+          });
+          setIsConnected(false);
+          
+          // Try next URL or retry
+          if (urls.length > 1) {
+            attemptConnection(urls.slice(1));
+          } else {
+            // Try to reconnect after a delay
+            setTimeout(connectWebSocket, 3000);
+          }
+        };
+        
+        ws.onerror = (error) => {
+          console.error("WebSocket error:", error);
+          setConnectionError(`WebSocket connection error to ${wsUrl}`);
+          
+          // Try next URL
+          if (urls.length > 1) {
+            attemptConnection(urls.slice(1));
+          } else {
+            // Try to reconnect after a delay
+            setTimeout(connectWebSocket, 3000);
+          }
+        };
       };
 
-      wsRef.current = ws;
+      // Start connection attempt
+      attemptConnection(wsUrls);
     };
     
     connectWebSocket();
