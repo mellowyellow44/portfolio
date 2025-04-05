@@ -195,7 +195,14 @@ app.addEventListener("error", (evt) => {
 
 // CORS middleware
 app.use(oakCors({
-  origin: /^https:\/\/(.*\.)?mellow-yellow-portfolio-9a6mk551hk1d\.deno\.dev$/,
+  origin: [
+    "http://localhost:5173",
+    "https://localhost:5173",
+    /^https:\/\/(.*\.)?mellow-yellow-portfolio-9a6mk551hk1d\.deno\.dev$/,
+    "https://mellow-yellow-portfolio.deno.dev"
+  ],
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
 
