@@ -290,8 +290,13 @@ app.use(async (ctx) => {
   }
 });
 
-// Start the server
-const PORT = 8000;
-await app.listen({ port: PORT });
-console.log(`🚀 Server is running on http://localhost:${PORT}`);
-console.log(`🔌 WebSocket endpoint available at ws://localhost:${PORT}/ws`);
+// Dynamically set port based on environment
+const PORT = Deno.env.get("PORT") ? Number(Deno.env.get("PORT")) : 8000;
+
+// Listen with a more flexible configuration
+await app.listen({ 
+  port: PORT,
+  // Remove explicit hostname for Deno Deploy compatibility
+});
+
+console.log(`🚀 Server is running on ${Deno.env.get("DENO_DEPLOYMENT_ID") ? "Deno Deploy" : `http://localhost:${PORT}`}`);
