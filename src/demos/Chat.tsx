@@ -15,8 +15,21 @@ const ChatComponent = () => {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [typingUser, setTypingUser] = useState<string>("");
   const [isConnected, setIsConnected] = useState<boolean>(false);
+  const [connectionError, setConnectionError] = useState<string>("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const wsRef = useRef<WebSocket | null>(null);
+
+  // Determine WebSocket URL based on environment
+  const getWebSocketUrl = () => {
+    // For local development
+    if (window.location.hostname === 'localhost') {
+      return 'ws://localhost:8000/ws';
+    }
+    
+    // For production - use secure WebSocket with current host
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    return `${protocol}//${window.location.host}/ws`;
+  };
 
   // Check if this is a pop-up window
   const isPopupWindow = (window as any).opener !== null;
@@ -24,43 +37,59 @@ const ChatComponent = () => {
   // Connect to the WebSocket server when the component mounts
   useEffect(() => {
     const connectWebSocket = () => {
-      const ws = new WebSocket(`ws://${window.location.hostname}:8000/ws`);
+      const wsUrl = getWebSocketUrl();
+      console.log(`Attempting to connect to WebSocket: ${wsUrl}`);
+
+      const ws = new WebSocket(wsUrl);
       
       ws.onopen = () => {
-        console.log("WebSocket connection established");
+        console.log("WebSocket connection established successfully");
         setIsConnected(true);
+        setConnectionError("");
       };
       
       ws.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        console.log("Received message:", data);
-        
-        if (data.type === "message") {
-          setMessages((prevMessages) => [...prevMessages, data.data]);
-        } else if (data.type === "users_online") {
-          setUsersOnline(data.data);
-        } else if (data.type === "typing") {
-          setTypingUser(data.data);
-          setIsTyping(true);
-          // Clear the typing indicator after 2 seconds
-          setTimeout(() => {
-            setIsTyping(false);
-          }, 2000);
+        try {
+          const data = JSON.parse(event.data);
+          console.log("Received WebSocket message:", data);
+          
+          if (data.type === "message") {
+            setMessages((prevMessages) => [...prevMessages, data.data]);
+          } else if (data.type === "users_online") {
+            setUsersOnline(data.data);
+          } else if (data.type === "typing") {
+            setTypingUser(data.data);
+            setIsTyping(true);
+            // Clear the typing indicator after 2 seconds
+            setTimeout(() => {
+              setIsTyping(false);
+            }, 2000);
+          }
+        } catch (parseError) {
+          console.error("Error parsing WebSocket message:", parseError);
         }
       };
       
-      ws.onclose = () => {
-        console.log("WebSocket connection closed");
+      ws.onclose = (event) => {
+        console.log("WebSocket connection closed", {
+          code: event.code,
+          reason: event.reason,
+          wasClean: event.wasClean
+        });
         setIsConnected(false);
+        
         // Try to reconnect after a delay
         setTimeout(connectWebSocket, 3000);
       };
       
       ws.onerror = (error) => {
         console.error("WebSocket error:", error);
-        ws.close();
+        setConnectionError("WebSocket connection error");
+        
+        // Try to reconnect after a delay
+        setTimeout(connectWebSocket, 3000);
       };
-      
+
       wsRef.current = ws;
     };
     
@@ -74,18 +103,7 @@ const ChatComponent = () => {
     };
   }, []);
 
-  // Auto-scroll to the bottom of the messages
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const scrollToBottom = (): void => {
-    // Use a type assertion to avoid TypeScript DOM compatibility issues
-    if (messagesEndRef.current) {
-      (messagesEndRef.current as any).scrollIntoView?.({ behavior: "smooth" });
-    }
-  };
-
+  // Existing methods remain the same
   const sendMessage = (type: string, data: any): void => {
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
       wsRef.current.send(JSON.stringify({
@@ -132,12 +150,6 @@ const ChatComponent = () => {
     return time.split(":").slice(0, 2).join(":");
   };
 
-  const connectionStatus = isConnected ? (
-    <span className="text-green-500">●</span>
-  ) : (
-    <span className="text-red-500">●</span>
-  );
-
   return (
     <>
       <div className="flex flex-col h-screen max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg overflow-hidden">
@@ -145,9 +157,20 @@ const ChatComponent = () => {
           <div className="flex flex-col items-center justify-center h-full p-6">
             <h2 className="text-2xl font-bold mb-6 text-gray-800">Join the Chat</h2>
             <div className="mb-4 flex items-center">
-              Connection Status: {connectionStatus}
-              <span className="ml-2">{isConnected ? "Connected" : "Disconnected"}</span>
+              Connection Status: 
+              {isConnected ? (
+                <span className="text-green-500 ml-2">● Connected</span>
+              ) : (
+                <span className="text-red-500 ml-2">● Disconnected</span>
+              )}
             </div>
+            {connectionError && (
+              <div className="text-red-500 mb-4 text-center">
+                {connectionError}
+                <br />
+                Please check your network connection
+              </div>
+            )}
             <form onSubmit={handleJoin} className="w-full max-w-sm">
               <div className="flex items-center border-b border-gray-500 py-2">
                 <input
@@ -170,12 +193,17 @@ const ChatComponent = () => {
             </form>
           </div>
         ) : (
+          // Existing joined chat UI remains the same
           <>
             <div className="bg-gray-800 p-4 flex justify-between items-center">
               <h2 className="text-white text-lg font-bold">Portfolio Chat</h2>
               <div className="flex items-center">
                 <div className="text-green-400 text-sm mr-2">{usersOnline} user(s) online</div>
-                {connectionStatus}
+                {isConnected ? (
+                  <span className="text-green-500">●</span>
+                ) : (
+                  <span className="text-red-500">●</span>
+                )}
               </div>
             </div>
             
@@ -246,6 +274,7 @@ const ChatComponent = () => {
 
 export default ChatComponent;
 
+// ChatCTA component remains the same
 const ChatCTA = () => {
   const openChatInNewWindow = () => {
     (window as any).open(window.location.href, "_blank", "width=500,height=700");
