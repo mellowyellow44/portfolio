@@ -5,6 +5,7 @@ interface Message {
   user: string;
   time: string;
 }
+//
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState<Message[]>([]);
