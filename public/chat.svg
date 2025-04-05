@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f0f9ff" />
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="80" fill="#bfdbfe" opacity="0.5" />
+  <circle cx="700" cy="300" r="80" fill="#bfdbfe" opacity="0.5" />
+  <circle cx="200" cy="350" r="40" fill="#dbeafe" opacity="0.5" />
+  <circle cx="600" cy="80" r="40" fill="#dbeafe" opacity="0.5" />
+  
+  <!-- Chat Interface -->
+  <rect x="250" y="50" width="300" height="300" rx="16" fill="#ffffff" stroke="#e5e7eb" stroke-width="2" />
+  
+  <!-- Chat header -->
+  <rect x="250" y="50" width="300" height="50" rx="16" fill="#3b82f6" />
+  <text x="280" y="82" font-family="Arial" font-size="18" font-weight="bold" fill="#ffffff">Portfolio Chat</text>
+  <circle cx="520" cy="75" r="6" fill="#4ade80" />
+  <text x="460" y="82" font-family="Arial" font-size="14" fill="#ffffff">3 online</text>
+  
+  <!-- Messages -->
+  <!-- Message 1 (received) -->
+  <rect x="270" y="120" width="150" height="60" rx="8" fill="#f3f4f6" />
+  <text x="284" y="140" font-family="Arial" font-size="14" font-weight="bold" fill="#374151">Guest User</text>
+  <text x="284" y="160" font-family="Arial" font-size="14" fill="#4b5563">Hello! How are you?</text>
+  <text x="284" y="175" font-family="Arial" font-size="10" fill="#9ca3af">10:24</text>
+  
+  <!-- Message 2 (sent) -->
+  <rect x="380" y="190" width="150" height="60" rx="8" fill="#3b82f6" />
+  <text x="394" y="210" font-family="Arial" font-size="14" font-weight="bold" fill="#ffffff">You</text>
+  <text x="394" y="230" font-family="Arial" font-size="14" fill="#ffffff">I'm great, thanks!</text>
+  <text x="394" y="245" font-family="Arial" font-size="10" fill="#dbeafe">10:25</text>
+  
+  <!-- Typing indicator -->
+  <text x="280" y="280" font-family="Arial" font-size="12" font-style="italic" fill="#9ca3af">Guest User is typing...</text>
+  
+  <!-- Message input -->
+  <rect x="270" y="300" width="260" height="30" rx="6" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" />
+  <text x="284" y="320" font-family="Arial" font-size="12" fill="#9ca3af">Type a message...</text>
+  
+  <!-- Send button -->
+  <rect x="530" y="300" width="40" height="30" rx="6" fill="#3b82f6" />
+  <path d="M545,315 L560,315 M552.5,307.5 L560,315 L552.5,322.5" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Multi-window hint -->
+  <rect x="100" y="180" width="120" height="80" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="2" opacity="0.8" />
+  <rect x="90" y="190" width="120" height="80" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="2" />
+  <path d="M130,230 Q150,210 170,230 M130,230 Q150,250 170,230" stroke="#3b82f6" stroke-width="2" fill="none" />
+  
+  <rect x="580" y="180" width="120" height="80" rx="8" fill="#ffffff" stroke="#e5e7eb" stroke-width="2" opacity="0.8" />
+  <rect x="590" y="190" width="120" height="80" rx="8" fill="#ffffff" stroke="#3b82f6" stroke-width="2" />
+  <path d="M630,230 Q650,210 670,230 M630,230 Q650,250 670,230" stroke="#3b82f6" stroke-width="2" fill="none" />
+  
+  <!-- Connection lines -->
+  <path d="M210,230 C230,230 240,180 270,180" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" fill="none" />
+  <path d="M590,230 C570,230 560,180 530,180" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" fill="none" />
+  
+  <!-- WebSocket icon -->
+  <circle cx="400" cy="30" r="15" fill="#3b82f6" opacity="0.8" />
+  <path d="M390,30 Q400,20 410,30 M390,30 Q400,40 410,30" stroke="#ffffff" stroke-width="2" fill="none" />
+  
+  <!-- Tooltip -->
+  <rect x="335" y="10" width="130" height="25" rx="4" fill="#334155" />
+  <text x="350" y="26" font-family="Arial" font-size="12" fill="#ffffff">WebSocket Connection</text>
+  <path d="M400,30 L400,38" stroke="#334155" stroke-width="10" fill="none" />
+</svg>
