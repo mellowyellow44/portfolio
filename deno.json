@@ -4,6 +4,7 @@
     "@tajpouria/cors": "jsr:@tajpouria/cors@^1.2.1"
   },
   "deploy": {
+    "project": "013c9b90-910c-4a36-99e9-92f1a62d6a5b",
     "exclude": [
       "**/node_modules"
     ],
@@ -11,4 +12,3 @@
     "entrypoint": "api/main.ts"
   }
 }
-

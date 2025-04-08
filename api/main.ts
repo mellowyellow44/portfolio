@@ -1,6 +1,7 @@
 // main.ts
 import { Application, Router } from "@oak/oak";
 import { oakCors } from "@tajpouria/cors";
+import { load } from "https://deno.land/std@0.220.0/dotenv/mod.ts";
 
 // Set up router
 const router = new Router();
@@ -9,6 +10,121 @@ const router = new Router();
 const sockets = new Set<WebSocket>();
 let connectedUsers = 0;
 const activeUsers = new Map<WebSocket, string>();
+
+// Interface for sentiment analysis response
+interface SentimentResponse {
+  score: number;
+  label: string;
+  confidence: number;
+}
+
+// HuggingFace API integration for sentiment analysis
+// HuggingFace API integration for sentiment analysis
+async function analyzeWithHuggingFace(
+  text: string,
+): Promise<SentimentResponse> {
+  try {
+    const env = await load();
+    const HUGGINGFACE_API_KEY = env["HUGGINGFACE_API_KEY"];
+
+    if (!HUGGINGFACE_API_KEY) {
+      throw new Error("HUGGINGFACE_API_KEY environment variable not set");
+    }
+
+    // Make the API request
+    const apiResponse = await fetch(
+      "https://api-inference.huggingface.co/models/distilbert-base-uncased-finetuned-sst-2-english",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${HUGGINGFACE_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ inputs: text }),
+      },
+    );
+
+    if (!apiResponse.ok) {
+      const errorText = await apiResponse.text();
+      throw new Error(
+        `HuggingFace API error: ${apiResponse.status} ${errorText}`,
+      );
+    }
+
+    const result = await apiResponse.json();
+    console.log("HuggingFace API result:", result);
+
+    // Handle nested array structure
+    let sentiment;
+
+    // Check if it's a nested array structure [[{...}, {...}]]
+    if (Array.isArray(result) && Array.isArray(result[0])) {
+      // Get the first entry (highest confidence)
+      sentiment = result[0][0];
+    } // Check if it's a simple array structure [{...}, {...}]
+    else if (Array.isArray(result) && result[0]) {
+      sentiment = result[0];
+    } // Otherwise we don't recognize the format
+    else {
+      throw new Error("Unrecognized API response format");
+    }
+
+    if (sentiment && sentiment.label && sentiment.score !== undefined) {
+      const { label, score } = sentiment;
+
+      // Convert to our format
+      const normalizedScore = label === "POSITIVE" ? score : -score;
+
+      return {
+        score: normalizedScore,
+        label: label === "POSITIVE"
+          ? (score > 0.8 ? "Very Positive" : "Positive")
+          : (score > 0.8 ? "Very Negative" : "Negative"),
+        confidence: score * 100,
+      };
+    } else {
+      throw new Error("Missing expected fields in API response");
+    }
+  } catch (error) {
+    console.error("Error in HuggingFace sentiment analysis:", error);
+    return {
+      score: 0,
+      label: "Neutral",
+      confidence: 0,
+    };
+  }
+}
+
+// Sentiment Analysis API endpoint
+router.post("/api/analyze-sentiment", async (ctx) => {
+  console.log("📬 Sentiment analysis request received", ctx);
+  try {
+    const text = await ctx.request.body.text();
+
+    if (!text || typeof text !== "string") {
+      ctx.response.status = 400;
+      ctx.response.body = { error: "Text parameter is required" };
+      return;
+    }
+
+    // Call HuggingFace API for sentiment analysis
+    try {
+      const result = await analyzeWithHuggingFace(text);
+      ctx.response.body = result;
+    } catch (error) {
+      console.error("HuggingFace API error:", error);
+      ctx.response.status = 500;
+      ctx.response.body = {
+        error: "Error connecting to sentiment analysis service",
+        message: error instanceof Error ? error.message : String(error),
+      };
+    }
+  } catch (error) {
+    console.error("Error in sentiment analysis endpoint:", error);
+    ctx.response.status = 500;
+    ctx.response.body = { error: "Failed to analyze text" };
+  }
+});
 
 // Add WebSocket route
 router.get("/ws", (ctx) => {
@@ -21,16 +137,16 @@ router.get("/ws", (ctx) => {
   try {
     const ws = ctx.upgrade();
     console.log("🔌 WebSocket connection established");
-    
+
     // Add socket to the set of active connections
     sockets.add(ws);
     connectedUsers++;
-    
+
     // Send current user count immediately after connection
     try {
       ws.send(JSON.stringify({
         type: "users_online",
-        data: connectedUsers
+        data: connectedUsers,
       }));
     } catch (error) {
       console.error("Error sending initial user count:", error);
@@ -56,8 +172,8 @@ router.get("/ws", (ctx) => {
                 data: {
                   text: `Welcome to the chat, ${username}!`,
                   user: "System",
-                  time: new Date().toLocaleTimeString()
-                }
+                  time: new Date().toLocaleTimeString(),
+                },
               }));
             }
 
@@ -68,12 +184,12 @@ router.get("/ws", (ctx) => {
                 data: {
                   text: `${username} has joined the chat`,
                   user: "System",
-                  time: new Date().toLocaleTimeString()
-                }
+                  time: new Date().toLocaleTimeString(),
+                },
               },
-              ws
+              ws,
             );
-            
+
             // Broadcast updated user count after successful join
             broadcastUserCount();
           } catch (error) {
@@ -82,15 +198,15 @@ router.get("/ws", (ctx) => {
         } else if (data.type === "message") {
           // Handle chat message
           console.log(`💬 Message from ${data.data.user}: ${data.data.text}`);
-          
+
           // Broadcast message to all clients
           broadcast({
             type: "message",
             data: {
               text: data.data.text,
               user: data.data.user,
-              time: new Date().toLocaleTimeString()
-            }
+              time: new Date().toLocaleTimeString(),
+            },
           });
         } else if (data.type === "typing") {
           // Handle typing indicator
@@ -99,9 +215,9 @@ router.get("/ws", (ctx) => {
             broadcast(
               {
                 type: "typing",
-                data: username
+                data: username,
               },
-              ws
+              ws,
             );
           }
         }
@@ -115,7 +231,7 @@ router.get("/ws", (ctx) => {
       try {
         console.log("🔌 WebSocket connection closed");
         sockets.delete(ws);
-        
+
         if (connectedUsers > 0) {
           connectedUsers--;
         }
@@ -132,8 +248,8 @@ router.get("/ws", (ctx) => {
               data: {
                 text: `${username} has left the chat`,
                 user: "System",
-                time: new Date().toLocaleTimeString()
-              }
+                time: new Date().toLocaleTimeString(),
+              },
             });
           }
         }
@@ -177,7 +293,7 @@ function broadcastUserCount() {
   console.log(`📊 Broadcasting user count: ${connectedUsers}`);
   broadcast({
     type: "users_online",
-    data: connectedUsers
+    data: connectedUsers,
   });
 }
 
@@ -199,11 +315,11 @@ app.use(oakCors({
     "http://localhost:5173",
     "https://localhost:5173",
     /^https:\/\/(.*\.)?mellow-yellow-portfolio-9a6mk551hk1d\.deno\.dev$/,
-    "https://mellow-yellow-portfolio.deno.dev"
+    "https://mellow-yellow-portfolio.deno.dev",
   ],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
+  credentials: true,
 }));
 
 // API routes
@@ -304,9 +420,15 @@ app.use(async (ctx) => {
 const PORT = Deno.env.get("PORT") ? Number(Deno.env.get("PORT")) : 8000;
 
 // Listen with a more flexible configuration
-await app.listen({ 
+await app.listen({
   port: PORT,
   // Remove explicit hostname for Deno Deploy compatibility
 });
 
-console.log(`🚀 Server is running on ${Deno.env.get("DENO_DEPLOYMENT_ID") ? "Deno Deploy" : `http://localhost:${PORT}`}`);
+console.log(
+  `🚀 Server is running on ${
+    Deno.env.get("DENO_DEPLOYMENT_ID")
+      ? "Deno Deploy"
+      : `http://localhost:${PORT}`
+  }`,
+);

@@ -19,13 +19,22 @@ const DemosPage: React.FC = () => {
   // Demo data
   const demos: DemoInfo[] = [
     {
+      id: "sentiment-analysis",
+      title: "AI Sentiment Analysis",
+      description:
+        "Experience real-time sentiment analysis powered by HuggingFace's DistilBERT model. This demo uses a Deno/Oak backend to securely communicate with HuggingFace's API, analyzing text emotion with advanced NLP. The frontend leverages Redux Toolkit Query for efficient API handling and features a dynamic visualization meter that provides immediate visual feedback on sentiment. Try entering various text samples to see how AI perceives emotional tone in different contexts.",
+      tags: ["ai", "huggingface", "nlp", "react", "redux-toolkit", "deno", "oak", "api-integration"],
+      path: "/demos/sentiment-analysis",
+      image: "/sentiment-analysis.svg", 
+    },
+    {
       id: "realtime-chat",
       title: "Real-time Chat Application",
       description:
         "A fully-functional real-time chat application built with native WebSockets and React. Features include real-time messaging, typing indicators, user online status, and auto-reconnection. Try opening multiple windows to chat with yourself and experience the real-time communication capabilities. This demo showcases advanced state management, WebSocket communication, and responsive UI design.",
       tags: ["websockets", "real-time", "react", "tailwind-css", "typescript", "deno", "chat"],
       path: "/demos/chat",
-      image: "/chat.svg", // You'll need to create this image or use a placeholder
+      image: "/chat.svg",
     },
     {
       id: "tailwind-frequencies",
@@ -182,7 +191,7 @@ const DemosPage: React.FC = () => {
                   placeholder="Search demos..."
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
                   value={searchQuery}
-                  onChange={(e:any) => setSearchQuery(e.target.value)}
+                  onChange={(e: any) => setSearchQuery(e.target.value)}
                 />
                 <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                   <svg

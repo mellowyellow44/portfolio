@@ -1,10 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import {
-  BrowserRouter as Router,
-  Navigate,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes, } from "react-router-dom";
 import StylishLoader from "./components/StylishLoader.tsx";
 
 import NavBar from "./components/NavBar.tsx";
@@ -14,15 +9,10 @@ const Skills = lazy(() => import("./pages/Skills/SkillsLayout.tsx"));
 const Resume = lazy(() => import("./pages/Resume/Layout.tsx"));
 const Demos = lazy(() => import("./demos/layout.tsx"));
 const SkillsOverView = lazy(() => import("./pages/Skills/SkillsOverview.tsx"));
-const TailWindFrequencies = lazy(() =>
-  import("./demos/TailwindFrequencies.tsx")
-);
-const RechartsMouseEventDataViz = lazy(() =>
-  import("./demos/RechartsMouseEventDataViz.tsx")
-);
-const ChatDemo = lazy(() =>
-  import("./demos/Chat.tsx")
-);
+const TailWindFrequencies = lazy(() => import("./demos/TailwindFrequencies.tsx") );
+const RechartsMouseEventDataViz = lazy(() => import("./demos/RechartsMouseEventDataViz.tsx") );
+const ChatDemo = lazy(() => import("./demos/Chat.tsx") );
+const SentimentAnalysis = lazy(() => import("./demos/Sentiment/Layout.tsx") );
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -93,6 +83,11 @@ const RoutesIndex: React.FC = () => {
               <Route
                 path="demos/chat"
                 element={<ChatDemo />}
+              />
+
+              <Route
+                path="demos/sentiment-analysis"
+                element={<SentimentAnalysis />}
               />
 
               <Route
