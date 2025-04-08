@@ -1,6 +1,7 @@
 // main.ts
 import { Application, Router } from "@oak/oak";
 import { oakCors } from "@tajpouria/cors";
+import { load } from "https://deno.land/std@0.220.0/dotenv/mod.ts";
 
 // Set up router
 const router = new Router();
@@ -23,8 +24,8 @@ async function analyzeWithHuggingFace(
   text: string,
 ): Promise<SentimentResponse> {
   try {
-    // Get API key from environment variable
-    const HUGGINGFACE_API_KEY = Deno.env.get("HUGGINGFACE_API_KEY");
+    const env = await load();
+    const HUGGINGFACE_API_KEY = env["HUGGINGFACE_API_KEY"];
 
     if (!HUGGINGFACE_API_KEY) {
       throw new Error("HUGGINGFACE_API_KEY environment variable not set");
@@ -45,7 +46,9 @@ async function analyzeWithHuggingFace(
 
     if (!apiResponse.ok) {
       const errorText = await apiResponse.text();
-      throw new Error(`HuggingFace API error: ${apiResponse.status} ${errorText}`);
+      throw new Error(
+        `HuggingFace API error: ${apiResponse.status} ${errorText}`,
+      );
     }
 
     const result = await apiResponse.json();
@@ -53,24 +56,22 @@ async function analyzeWithHuggingFace(
 
     // Handle nested array structure
     let sentiment;
-    
+
     // Check if it's a nested array structure [[{...}, {...}]]
     if (Array.isArray(result) && Array.isArray(result[0])) {
       // Get the first entry (highest confidence)
       sentiment = result[0][0];
-    } 
-    // Check if it's a simple array structure [{...}, {...}]
+    } // Check if it's a simple array structure [{...}, {...}]
     else if (Array.isArray(result) && result[0]) {
       sentiment = result[0];
-    } 
-    // Otherwise we don't recognize the format
+    } // Otherwise we don't recognize the format
     else {
       throw new Error("Unrecognized API response format");
     }
 
     if (sentiment && sentiment.label && sentiment.score !== undefined) {
       const { label, score } = sentiment;
-      
+
       // Convert to our format
       const normalizedScore = label === "POSITIVE" ? score : -score;
 
@@ -89,7 +90,7 @@ async function analyzeWithHuggingFace(
     return {
       score: 0,
       label: "Neutral",
-      confidence: 0
+      confidence: 0,
     };
   }
 }
