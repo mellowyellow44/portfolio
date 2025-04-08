@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SkillCard from "./SkillCard";
+import SkillCard from "./SkillCard.tsx";
 import {
     Box,
     Chip,
@@ -14,6 +14,7 @@ import {
     Typography,
     useTheme,
 } from "@mui/material";
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import CodeIcon from "@mui/icons-material/Code";
@@ -22,22 +23,23 @@ import CloudIcon from "@mui/icons-material/Cloud";
 import SecurityIcon from "@mui/icons-material/Security";
 import BrushIcon from "@mui/icons-material/Brush";
 import AppsIcon from "@mui/icons-material/Apps"; // Added icon for "All" category
-import { SkillCardProps, skillsData } from "./skillsData";
+import { SkillCardProps, skillsData } from "./skillsData.tsx"
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import {
     setFilteredSkills,
     setSearchTerm,
     setSelectedCategory,
-} from "../../redux/slices/skills";
+} from "../../redux/slices/skills.ts";
 import { JSX } from "react/jsx-runtime";
-import PageHeader from "../../components/PageHeader";
-import TechBadge from "../../components/TechBadge"; //
+import PageHeader from "../../components/PageHeader.tsx"
+import TechBadge from "../../components/TechBadge.tsx";
 
 // Define skill categories for filtering
 const categories = [
     { name: "All", icon: <AppsIcon />, key: null }, // Added "All" category
     { name: "Frontend", icon: <CodeIcon />, key: "frontend" },
+    { name: "AI & ML", icon: <SmartToyIcon />, key: "ai" }, // New AI category
     { name: "Data", icon: <StorageIcon />, key: "data" },
     { name: "Cloud", icon: <CloudIcon />, key: "cloud" },
     { name: "Security", icon: <SecurityIcon />, key: "security" },
@@ -53,6 +55,10 @@ const categoryMap = {
         "tailwind",
         "datavis",
         "microfrontend",
+    ],
+    ai: [
+        "huggingface", // Add your new HuggingFace skill to this category
+        "python", // Python can be part of both AI and Data categories
     ],
     data: ["postgresql", "redux", "websockets", "python"],
     cloud: ["aws", "nodejs", "deno"],
@@ -101,7 +107,7 @@ const SkillsPage: React.FC = () => {
     }, [searchTerm, selectedCategory]);
 
     // Handle search input change
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchChange = (event: any) => {
         dispatch(setSearchTerm(event.target.value));
         setIsTyping(true);
         setTimeout(() => setIsTyping(false), 500);

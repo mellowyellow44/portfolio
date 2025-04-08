@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f0f4f8" />
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.2" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bgGradient)" />
+
+  <!-- Message bubbles (left side - input) -->
+  <g transform="translate(100, 150)">
+    <!-- First message bubble -->
+    <rect x="0" y="0" width="240" height="60" rx="20" ry="20" fill="#E2E8F0" />
+    <text x="20" y="35" font-family="Arial, sans-serif" font-size="16" fill="#4A5568">Had a great day today!</text>
+    
+    <!-- Second message bubble -->
+    <rect x="0" y="80" width="280" height="60" rx="20" ry="20" fill="#E2E8F0" />
+    <text x="20" y="115" font-family="Arial, sans-serif" font-size="16" fill="#4A5568">Feeling disappointed about results.</text>
+    
+    <!-- Third message bubble -->
+    <rect x="0" y="160" width="220" height="60" rx="20" ry="20" fill="#E2E8F0" />
+    <text x="20" y="195" font-family="Arial, sans-serif" font-size="16" fill="#4A5568">Just got some good news!</text>
+  </g>
+
+  <!-- Processing arrows -->
+  <g>
+    <path d="M380,180 L420,180" stroke="#6366F1" stroke-width="3" />
+    <polygon points="420,180 415,175 415,185" fill="#6366F1" />
+    
+    <path d="M380,210 L420,210" stroke="#6366F1" stroke-width="3" />
+    <polygon points="420,210 415,205 415,215" fill="#6366F1" />
+    
+    <path d="M380,240 L420,240" stroke="#6366F1" stroke-width="3" />
+    <polygon points="420,240 415,235 415,245" fill="#6366F1" />
+  </g>
+
+  <!-- AI Processing Box -->
+  <g>
+    <rect x="420" y="150" width="100" height="120" rx="10" ry="10" fill="#4F46E5" />
+    
+    <!-- AI Brain Symbol -->
+    <path d="M470,180 C485,180 495,170 495,160 C495,150 485,140 470,140 C455,140 445,150 445,160 C445,170 455,180 470,180 Z" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    <path d="M455,170 L445,200 L470,190 L495,200 L485,170" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    <path d="M460,195 L460,215" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    <path d="M470,190 L470,220" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    <path d="M480,195 L480,215" fill="none" stroke="#FFFFFF" stroke-width="2" />
+    
+    <text x="470" y="250" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">AI Analysis</text>
+  </g>
+
+  <!-- Output arrows -->
+  <g>
+    <path d="M520,180 L560,180" stroke="#6366F1" stroke-width="3" />
+    <polygon points="560,180 555,175 555,185" fill="#6366F1" />
+    
+    <path d="M520,210 L560,210" stroke="#6366F1" stroke-width="3" />
+    <polygon points="560,210 555,205 555,215" fill="#6366F1" />
+    
+    <path d="M520,240 L560,240" stroke="#6366F1" stroke-width="3" />
+    <polygon points="560,240 555,235 555,245" fill="#6366F1" />
+  </g>
+
+  <!-- Result bubbles (right side - output) -->
+  <g transform="translate(560, 150)">
+    <!-- First result bubble (positive) -->
+    <rect x="0" y="0" width="140" height="60" rx="20" ry="20" fill="#10B981" />
+    <text x="70" y="35" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">Positive 😊</text>
+    
+    <!-- Second result bubble (negative) -->
+    <rect x="0" y="80" width="140" height="60" rx="20" ry="20" fill="#EF4444" />
+    <text x="70" y="115" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">Negative 😟</text>
+    
+    <!-- Third result bubble (positive) -->
+    <rect x="0" y="160" width="140" height="60" rx="20" ry="20" fill="#10B981" />
+    <text x="70" y="195" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">Positive 😊</text>
+  </g>
+
+  <!-- Sentiment Meter -->
+  <g transform="translate(250, 350)">
+    <rect x="0" y="0" width="300" height="30" rx="15" ry="15" fill="url(#meterGradient)" />
+    <defs>
+      <linearGradient id="meterGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#EF4444" />
+        <stop offset="50%" stop-color="#3B82F6" />
+        <stop offset="100%" stop-color="#10B981" />
+      </linearGradient>
+    </defs>
+    
+    <!-- Meter labels -->
+    <text x="0" y="50" font-family="Arial, sans-serif" font-size="14" fill="#4A5568" text-anchor="start">Negative</text>
+    <text x="150" y="50" font-family="Arial, sans-serif" font-size="14" fill="#4A5568" text-anchor="middle">Neutral</text>
+    <text x="300" y="50" font-family="Arial, sans-serif" font-size="14" fill="#4A5568" text-anchor="end">Positive</text>
+    
+    <!-- Meter title -->
+    <text x="150" y="-20" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4A5568" text-anchor="middle">Sentiment Analysis Meter</text>
+    
+    <!-- Meter pointer -->
+    <g transform="translate(225, 15)">
+      <circle cx="0" cy="0" r="12" fill="#111827" />
+      <circle cx="0" cy="0" r="8" fill="#FFFFFF" />
+    </g>
+  </g>
+
+  <!-- HuggingFace + Deno Integration -->
+  <g transform="translate(400, 460)">
+    <rect x="-180" y="0" width="360" height="80" rx="10" ry="10" fill="#FFFFFF" stroke="#CBD5E0" stroke-width="2" />
+    
+    <!-- HuggingFace icon (simplified representation) -->
+    <g transform="translate(-100, 40) scale(0.6)">
+      <path d="M-30,-30 Q-30,-40 -20,-40 L20,-40 Q30,-40 30,-30 L30,0 L0,20 L-30,0 Z" fill="#FFCA28" />
+      <circle cx="-15" cy="-25" r="5" fill="#111827" />
+      <circle cx="15" cy="-25" r="5" fill="#111827" />
+      <path d="M-10,-10 Q0,-5 10,-10" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" />
+    </g>
+    
+    <!-- Deno icon (simplified representation) -->
+    <g transform="translate(100, 40) scale(0.6)">
+      <circle cx="0" cy="0" r="30" fill="#FFFFFF" stroke="#111827" stroke-width="3" />
+      <circle cx="-12" cy="-12" r="5" fill="#111827" />
+      <path d="M-5,5 Q0,15 15,10" fill="none" stroke="#111827" stroke-width="3" stroke-linecap="round" />
+    </g>
+    
+    <!-- Connection line -->
+    <line x1="-60" y1="40" x2="60" y2="40" stroke="#6366F1" stroke-width="3" stroke-dasharray="5,5" />
+    
+    <!-- Labels -->
+    <text x="-100" y="70" font-family="Arial, sans-serif" font-size="12" fill="#4A5568" text-anchor="middle">HuggingFace</text>
+    <text x="100" y="70" font-family="Arial, sans-serif" font-size="12" fill="#4A5568" text-anchor="middle">Deno</text>
+    <text x="0" y="20" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4A5568" text-anchor="middle">Powered by AI Integration</text>
+  </g>
+</svg>

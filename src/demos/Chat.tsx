@@ -5,7 +5,6 @@ interface Message {
   user: string;
   time: string;
 }
-//
 
 const ChatComponent = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -91,6 +90,15 @@ const ChatComponent = () => {
     };
   }, []);
 
+  // Scroll to bottom when messages update
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      // Using a more TypeScript-friendly approach
+      const element = messagesEndRef.current as any;
+      element.scrollIntoView?.({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   // Existing methods remain the same
   const sendMessage = (type: string, data: any): void => {
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
@@ -139,7 +147,7 @@ const ChatComponent = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <div className="flex flex-col h-screen max-w-md mx-auto bg-gray-100 shadow-lg rounded-lg overflow-hidden">
         {!isJoined ? (
           <div className="flex flex-col items-center justify-center h-full p-6">
@@ -164,7 +172,7 @@ const ChatComponent = () => {
                 <input
                   className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                   type="text"
-                  placeholder="Enter your name to join as guest"
+                  placeholder="Enter your name to join"
                   value={username}
                   onChange={(e: any) => setUsername(e.target.value)}
                   required
@@ -181,7 +189,6 @@ const ChatComponent = () => {
             </form>
           </div>
         ) : (
-          // Existing joined chat UI remains the same
           <>
             <div className="bg-gray-800 p-4 flex justify-between items-center">
               <h2 className="text-white text-lg font-bold">Portfolio Chat</h2>
@@ -230,7 +237,7 @@ const ChatComponent = () => {
               <div ref={messagesEndRef} />
             </div>
             
-            <div className="bg-gray-200 p-4">
+            <div className="bg-gray-200 p-4 relative z-10">
               <form onSubmit={handleSendMessage} className="flex">
                 <input
                   className="flex-1 bg-white rounded-l-lg px-4 py-2 focus:outline-none"
@@ -254,46 +261,47 @@ const ChatComponent = () => {
         )}
       </div>
       
-      {/* Only show the CTA if this is not a popup window */}
-      {!isPopupWindow && <ChatCTA />}
-    </>
+      {/* Only show the CTA if this is not a popup window - with responsive adjustments */}
+      {!isPopupWindow && <ResponsiveChatCTA />}
+    </div>
   );
 };
 
 export default ChatComponent;
 
-// ChatCTA component remains the same
-const ChatCTA = () => {
+// Improved responsive CTA component
+const ResponsiveChatCTA = () => {
   const openChatInNewWindow = () => {
     (window as any).open(window.location.href, "_blank", "width=500,height=700");
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <div className="mb-2 bg-white text-gray-700 p-2 rounded-lg shadow-lg text-sm animate-pulse">
-        Try opening multiple windows to chat with yourself!
-      </div>
-      <button
-        onClick={openChatInNewWindow}
-        className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition-transform hover:scale-105 focus:outline-none"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 animate-bounce"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+    <div className="fixed bottom-0 left-0 right-0 z-0 flex justify-center items-center p-4 md:bottom-6 md:right-6 md:left-auto">
+      <div className="flex flex-col items-center md:items-end">
+        <div className="mb-2 bg-white text-gray-700 p-2 rounded-lg shadow-lg text-sm animate-pulse max-w-xs text-center">
+          Try opening multiple windows to chat with yourself!
+        </div>
+        <button
+          onClick={openChatInNewWindow}
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 md:py-3 md:px-6 rounded-full shadow-lg transform transition-transform hover:scale-105 focus:outline-none"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-          />
-        </svg>
-        Open New Chat Window
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 md:h-6 md:w-6 animate-bounce"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+            />
+          </svg>
+          Open New Chat Window
+        </button>
+      </div>
     </div>
   );
 };
-//
