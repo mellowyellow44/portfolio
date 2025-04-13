@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Anchor, FileText, Code } from 'lucide-react'; // Import icons
 
 // Define types for our elements
 interface Polygon {
@@ -578,6 +579,8 @@ const AsteroidsNameFormation: React.FC = () => {
             visible: { 
               opacity: 1,
               transition: {
+                when: "beforeChildren",
+                staggerChildren: 0.2,
                 duration: 0.6,
                 delay: 0.2
               }
@@ -585,26 +588,137 @@ const AsteroidsNameFormation: React.FC = () => {
           }}
         >
           <motion.div
-            variants={buttonVariants}
+            variants={{
+              hidden: { opacity: 0, y: 20, scale: 0.9 },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                transition: { 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 15
+                }
+              },
+              hover: { 
+                scale: 1.05,
+                y: -5,
+                boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+                transition: { 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10
+                }
+              },
+              tap: {
+                scale: 0.95,
+                transition: {
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 10
+                }
+              }
+            }}
             whileHover="hover"
+            whileTap="tap"
+            className="transform-gpu"
           >
             <Link
               to="/skills"
-              className="inline-block px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300"
+              className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg"
             >
-              View Skills
+              <Code className="mr-2 w-5 h-5" />
+              <span>View Skills</span>
             </Link>
           </motion.div>
           
           <motion.div
-            variants={buttonVariants}
+            variants={{
+              hidden: { opacity: 0, y: 20, scale: 0.9 },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                transition: { 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 15
+                }
+              },
+              hover: { 
+                scale: 1.05,
+                y: -5,
+                boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+                transition: { 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10
+                }
+              },
+              tap: {
+                scale: 0.95,
+                transition: {
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 10
+                }
+              }
+            }}
             whileHover="hover"
+            whileTap="tap"
+            className="transform-gpu"
           >
             <Link
               to="/resume"
-              className="inline-block px-8 py-3 bg-gray-800 text-white rounded-full font-semibold hover:bg-gray-900 transition-all duration-300"
+              className="inline-flex items-center px-8 py-3 bg-gray-800 text-white rounded-full font-semibold hover:bg-gray-900 transition-all duration-300 shadow-lg"
             >
-              My Resume
+              <FileText className="mr-2 w-5 h-5" />
+              <span>My Resume</span>
+            </Link>
+          </motion.div>
+          
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20, scale: 0.9 },
+              visible: { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
+                transition: { 
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 15
+                }
+              },
+              hover: { 
+                scale: 1.05,
+                y: -5,
+                boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.2)",
+                transition: { 
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10
+                }
+              },
+              tap: {
+                scale: 0.95,
+                transition: {
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 10
+                }
+              }
+            }}
+            whileHover="hover"
+            whileTap="tap"
+            className="transform-gpu"
+          >
+            <Link
+              to="/maritime"
+              className="inline-flex items-center px-8 py-3 bg-teal-600 text-white rounded-full font-semibold hover:bg-teal-700 transition-all duration-300 shadow-lg"
+            >
+              <Anchor className="mr-2 w-5 h-5" />
+              <span>Maritime</span>
             </Link>
           </motion.div>
         </motion.div>

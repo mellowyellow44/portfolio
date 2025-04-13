@@ -6,6 +6,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import PersonIcon from "@mui/icons-material/Person";
 import ArticleIcon from '@mui/icons-material/Article';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { Anchor } from 'lucide-react';
+
 // import CodeIcon from "@mui/icons-material/Code";
 // import WorkIcon from "@mui/icons-material/Work";
 // import EmailIcon from "@mui/icons-material/Email";
@@ -17,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { githubProfileLink, linkedInProfileLink } from "../constants/links.ts";
+import { A } from "../../dist/assets/index-qEwMgSLK.js";
 
 // Hide AppBar on scroll down
 function HideOnScroll(props: { children: React.ReactElement }) {
@@ -56,6 +59,7 @@ const Navbar = () => {
         { name: "Skills", icon: <PersonIcon />, path: "/skills" },
         { name: "Resume", icon: <ArticleIcon />, path: "/resume" },
         { name: "Demos", icon: <PlayArrowIcon />, path: "/demos" },
+        { name: "Maritime", icon: <Anchor />, path: "/maritime" },
     ];
 
     // Social items
