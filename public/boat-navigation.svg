@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <!-- Background ocean -->
+  <defs>
+    <linearGradient id="oceanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0c4a6e" />
+    </linearGradient>
+    <filter id="turbulence" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="2" />
+      <feDisplacementMap in="SourceGraphic" scale="10" />
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <radialGradient id="sunRays" cx="50%" cy="10%" r="60%" fx="50%" fy="10%">
+      <stop offset="0%" stop-color="#fcd34d" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#fcd34d" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Main background -->
+  <rect width="400" height="300" fill="url(#oceanGradient)" />
+  
+  <!-- Sun rays -->
+  <circle cx="200" cy="30" r="200" fill="url(#sunRays)" />
+  
+  <!-- Ocean waves -->
+  <rect width="400" height="200" y="100" fill="#0ea5e9" opacity="0.4" filter="url(#turbulence)" />
+
+  <!-- Small waves in the foreground -->
+  <g stroke="#bae6fd" stroke-width="1.5" fill="none">
+    <path d="M0,175 Q25,165 50,175 Q75,185 100,175 Q125,165 150,175 Q175,185 200,175 Q225,165 250,175 Q275,185 300,175 Q325,165 350,175 Q375,185 400,175" opacity="0.6" />
+    <path d="M0,190 Q25,180 50,190 Q75,200 100,190 Q125,180 150,190 Q175,200 200,190 Q225,180 250,190 Q275,200 300,190 Q325,180 350,190 Q375,200 400,190" opacity="0.5" />
+    <path d="M0,205 Q25,195 50,205 Q75,215 100,205 Q125,195 150,205 Q175,215 200,205 Q225,195 250,205 Q275,215 300,205 Q325,195 350,205 Q375,215 400,205" opacity="0.4" />
+  </g>
+
+  <!-- Player's boat -->
+  <g transform="translate(90, 150) scale(0.8)">
+    <!-- Boat hull -->
+    <path d="M0,0 L60,0 L50,20 L10,20 Z" fill="#475569" />
+    <path d="M15,0 L45,0 L45,-10 L35,-10 L35,-20 L25,-20 L25,-10 L15,-10 Z" fill="#f1f5f9" />
+    <!-- Boat cabin -->
+    <rect x="25" y="-15" width="10" height="5" fill="#0ea5e9" />
+    <!-- Flag -->
+    <rect x="30" y="-25" width="2" height="10" fill="#475569" />
+    <path d="M32,-25 L42,-20 L32,-15" fill="#ef4444" />
+    <!-- Boat wake -->
+    <path d="M-5,15 Q10,25 25,15" stroke="#bae6fd" stroke-width="2" fill="none" />
+    <path d="M35,15 Q50,25 65,15" stroke="#bae6fd" stroke-width="2" fill="none" />
+  </g>
+
+  <!-- Rocks/obstacles -->
+  <g>
+    <!-- Rock 1 -->
+    <path d="M300,160 L310,140 L320,145 L325,135 L335,160 Z" fill="#64748b" />
+    <path d="M305,160 L313,145 L318,150 L323,160 Z" fill="#334155" />
+    
+    <!-- Rock 2 -->
+    <path d="M250,190 L260,175 L270,180 L280,190 Z" fill="#64748b" />
+    <path d="M255,190 L263,180 L268,185 L273,190 Z" fill="#334155" />
+    
+    <!-- Rock 3 -->
+    <path d="M340,170 L350,150 L360,155 L365,160 L370,170 Z" fill="#64748b" />
+    <path d="M345,170 L353,155 L358,160 L363,170 Z" fill="#334155" />
+  </g>
+
+  <!-- Score UI Element -->
+  <g transform="translate(25, 25)">
+    <!-- Score backdrop -->
+    <rect x="0" y="0" width="60" height="20" rx="5" fill="rgba(255, 255, 255, 0.2)" />
+    <text x="10" y="14" font-family="Arial" font-size="11" font-weight="bold" fill="white">SCORE: 42</text>
+  </g>
+  
+  <!-- Game title - Moved down to ensure visibility -->
+  <g transform="translate(200, 70)" text-anchor="middle">
+    <text x="0" y="0" font-family="Arial" font-size="20" font-weight="bold" fill="white" filter="url(#glow)">MARITIME</text>
+    <text x="0" y="25" font-family="Arial" font-size="20" font-weight="bold" fill="white" filter="url(#glow)">NAVIGATION</text>
+  </g>
+  
+  <!-- Controls hint -->
+  <g transform="translate(200, 260)" text-anchor="middle">
+    <rect x="-80" y="-15" width="160" height="30" rx="5" fill="rgba(255, 255, 255, 0.2)" />
+    <text x="0" y="0" font-family="Arial" font-size="9" fill="white">USE ARROW KEYS OR WASD</text>
+    <text x="0" y="12" font-family="Arial" font-size="9" fill="white">TO NAVIGATE</text>
+  </g>
+  
+  <!-- WASD keys -->
+  <g transform="translate(340, 250)">
+    <rect x="-8" y="-8" width="16" height="16" rx="3" fill="rgba(255, 255, 255, 0.3)" stroke="white" stroke-width="1" />
+    <text x="0" y="3" font-family="Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">W</text>
+  </g>
+  <g transform="translate(340, 270)">
+    <rect x="-8" y="-8" width="16" height="16" rx="3" fill="rgba(255, 255, 255, 0.3)" stroke="white" stroke-width="1" />
+    <text x="0" y="3" font-family="Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">S</text>
+  </g>
+  <g transform="translate(320, 270)">
+    <rect x="-8" y="-8" width="16" height="16" rx="3" fill="rgba(255, 255, 255, 0.3)" stroke="white" stroke-width="1" />
+    <text x="0" y="3" font-family="Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">A</text>
+  </g>
+  <g transform="translate(360, 270)">
+    <rect x="-8" y="-8" width="16" height="16" rx="3" fill="rgba(255, 255, 255, 0.3)" stroke="white" stroke-width="1" />
+    <text x="0" y="3" font-family="Arial" font-size="8" font-weight="bold" fill="white" text-anchor="middle">D</text>
+  </g>
+</svg>

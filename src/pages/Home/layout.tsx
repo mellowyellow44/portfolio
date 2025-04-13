@@ -628,7 +628,7 @@ const AsteroidsNameFormation: React.FC = () => {
               className="inline-flex items-center px-8 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg"
             >
               <Code className="mr-2 w-5 h-5" />
-              <span>View Skills</span>
+              <span>View Tech Skills</span>
             </Link>
           </motion.div>
           
@@ -673,7 +673,7 @@ const AsteroidsNameFormation: React.FC = () => {
               className="inline-flex items-center px-8 py-3 bg-gray-800 text-white rounded-full font-semibold hover:bg-gray-900 transition-all duration-300 shadow-lg"
             >
               <FileText className="mr-2 w-5 h-5" />
-              <span>My Resume</span>
+              <span>Tech Resume</span>
             </Link>
           </motion.div>
           
@@ -717,8 +717,7 @@ const AsteroidsNameFormation: React.FC = () => {
               to="/maritime"
               className="inline-flex items-center px-8 py-3 bg-teal-600 text-white rounded-full font-semibold hover:bg-teal-700 transition-all duration-300 shadow-lg"
             >
-              <Anchor className="mr-2 w-5 h-5" />
-              <span>Maritime</span>
+              <Anchor/>
             </Link>
           </motion.div>
         </motion.div>

@@ -19,6 +19,15 @@ const DemosPage: React.FC = () => {
   // Demo data
   const demos: DemoInfo[] = [
     {
+      id: "boat-navigation",
+      title: "Maritime Navigation Game",
+      description:
+        "Test your navigation skills in this fun boat steering game! Control a realistic vessel through treacherous waters and avoid rocks to achieve the highest score. Features include dynamic wave animations with D3.js, multiple difficulty levels, physics-based boat movement, and real-time scoring. Built with React, HTML Canvas, D3.js, and custom SVG graphics for smooth performance. Use arrow keys or WASD to navigate as you experience subtle tilting effects and fluid water dynamics in increasingly challenging maritime environments.",
+      tags: ["game", "react", "canvas", "javascript", "interactive", "animation", "maritime", "d3.js", "svg"],
+      path: "/demos/boat-navigation",
+      image: "/boat-navigation.svg",
+    },
+    {
       id: "sentiment-analysis",
       title: "AI Sentiment Analysis",
       description:

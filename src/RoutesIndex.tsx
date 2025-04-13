@@ -8,12 +8,13 @@ const Home = lazy(() => import("./pages/Home/Layout.tsx"));
 const Skills = lazy(() => import("./pages/Skills/SkillsLayout.tsx"));
 const Resume = lazy(() => import("./pages/Resume/Layout.tsx"));
 const Maritime = lazy(() => import("./pages/Maritime/Layout.tsx"));
-const Demos = lazy(() => import("./demos/layout.tsx"));
+const Demos = lazy(() => import("./demos/MainLayout.tsx"));
 const SkillsOverView = lazy(() => import("./pages/Skills/SkillsOverview.tsx"));
 const TailWindFrequencies = lazy(() => import("./demos/TailwindFrequencies.tsx") );
 const RechartsMouseEventDataViz = lazy(() => import("./demos/RechartsMouseEventDataViz.tsx") );
 const ChatDemo = lazy(() => import("./demos/Chat.tsx") );
 const SentimentAnalysis = lazy(() => import("./demos/Sentiment/Layout.tsx") );
+const BoatNavigation = lazy(() => import("./pages/Maritime/BoatNavigation.tsx") );
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -94,6 +95,11 @@ const RoutesIndex: React.FC = () => {
               <Route
                 path="demos/sentiment-analysis"
                 element={<SentimentAnalysis />}
+              />
+
+              <Route
+                path="demos/boat-navigation"
+                element={<BoatNavigation />}
               />
 
               <Route

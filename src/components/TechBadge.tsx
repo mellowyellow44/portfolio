@@ -25,6 +25,7 @@ const TechBadge: React.FC<TechBadgeProps> = ({
   className = '' 
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  console.log('TechBadge rendered', technologies);
   
   // For corner position, we'll show an expandable badge
   if (position === 'corner') {
